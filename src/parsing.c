@@ -6,29 +6,40 @@
 /*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 11:57:36 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/05/15 20:39:04 by ybenlafk         ###   ########.fr       */
+/*   Updated: 2023/05/19 16:38:03 by ybenlafk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
+int is_empty(char c)
+{
+	if (c == '\n' || c == ' ' || c == 0)
+		return (1);
+	return (0);
+}
+
 int	is_valid(t_var	*p, char **map)
 {
-	if (map[p->i][p->j + 1] == '\n' || map[p->i][p->j + 1] == ' '
-		|| map[p->i][p->j + 1] == 0)
+	if (!map[p->i + 1] || p->j == 0)
 		return (1);
-	else if (map[p->i][p->j - 1] == '\n' || map[p->i][p->j - 1] == ' '
-		|| map[p->i][p->j - 1] == 0)
+	else if (!map[p->i - 1] || p->i == 0)
 		return (1);
-	else if (!map[p->i + 1])
+	else if (is_empty(map[p->i + 1][p->j + 1]))
 		return (1);
-	else if (!map[p->i - 1] || p->i - 1 < 0)
+	else if (is_empty(map[p->i - 1][p->j - 1]))
 		return (1);
-	else if (map[p->i + 1][p->j] == '\n' || map[p->i + 1][p->j] == ' '
-		|| map[p->i + 1][p->j] == 0)
+	else if (is_empty(map[p->i - 1][p->j + 1]))
 		return (1);
-	else if (map[p->i - 1][p->j] == '\n' || map[p->i - 1][p->j] == ' '
-		|| map[p->i - 1][p->j] == 0)
+	else if (is_empty(map[p->i + 1][p->j - 1]))
+		return (1);
+	else if (is_empty(map[p->i][p->j + 1]))
+		return (1);
+	else if (is_empty(map[p->i][p->j - 1]))
+		return (1);
+	else if (is_empty(map[p->i + 1][p->j]))
+		return (1);
+	else if (is_empty(map[p->i - 1][p->j]))
 		return (1);
 	return (0);
 }
@@ -40,6 +51,7 @@ int	is_surrounded(char **map)
 	p.i = 0;
 	while (map[p.i])
 	{
+
 		p.j = 0;
 		while (map[p.i][p.j] && map[p.i][p.j] != '\n')
 		{
@@ -80,6 +92,8 @@ void	init_parse(t_data *data, char *map_fi)
 
 	i = 0;
 	fd = open(map_fi, O_RDONLY);
+	if (fd < 0)
+		return ;
 	line = get_next_line(fd);
 	data->world = (t_world *)ft_calloc(1, sizeof(t_world));
 	data->world->map = (char **)ft_calloc(1, sizeof(char *));
@@ -101,7 +115,7 @@ void	init_parse(t_data *data, char *map_fi)
 	if (is_surrounded(data->world->map))
 	{
 		printf("Error\n");
-		// exit(0);
+		exit(0);
 	}
 	close(fd);
 }

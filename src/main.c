@@ -6,7 +6,7 @@
 /*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 00:38:38 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/05/18 17:48:08 by ybenlafk         ###   ########.fr       */
+/*   Updated: 2023/05/19 16:38:35 by ybenlafk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void raycast(t_data *data, float player_x, float player_y, float player_angle)
         t.y0 = wall_top;
         t.x1 = p.i;
         t.y1 = wall_bottom;
-        mlx_draw_line(data->p.line, t, 0xFFFFFFFF);
+        // mlx_draw_line(data->p.line, t, 0xEEEEEEE);
         
         p.ray_angle += p.ray_angle_step;
         if (p.ray_angle >= p.start_angle + VIEW_ANGLE)
@@ -116,13 +116,15 @@ static void ft_hook(void* param)
 {
     t_data *data;
     t_var p;
+    t_param t;
 
+    
     data = (t_data *)param;
     p.speed = 2;
     p.new_px = data->p.px;
     p.new_py = data->p.py;
     moves(data, &p);
-    p.cell_x = (int)p.new_px  / 32;
+    p.cell_x = (int)p.new_px / 32;
     p.cell_y = (int)p.new_py / 32;
     if (p.new_px >= 0 && p.new_px < WIDTH && p.new_py >= 0 && p.new_py < HEIGHT)
     {
@@ -130,11 +132,16 @@ static void ft_hook(void* param)
         {
             data->p.px = p.new_px;
             data->p.py = p.new_py;
-        }
+        }   
     }
     angels(data);
     mlx_delete_image(data->mlx, data->p.line);
     data->p.line = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+    t.x0 =  data->p.px + 8;
+    t.y0 =  data->p.py + 8;
+    t.x1 =  data->p.px + 8 + data->p.pdx * 8;
+    t.y1 =  data->p.py + 8 + data->p.pdy * 8;
+    mlx_draw_line(data->p.line, t, 0xFF0000FF);
 	raycast(data, data->p.px, data->p.py, data->p.pa);
     mlx_image_to_window(data->mlx, data->p.line, 0, 0);
 }
@@ -161,7 +168,6 @@ void	draw_map(t_data *data, t_var *var)
 		p.i++;
 	}
 }
-
 int	main(int ac, char **av)
 {
 	t_data	*data;
