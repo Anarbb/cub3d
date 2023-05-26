@@ -34,7 +34,6 @@ unsigned int	shading_colors(unsigned int rgba, float dist)
 void	raycast(t_data *data, float player_x, float player_y,
 		float player_angle)
 {
-	t_line			t;
 	t_engine		p;
 	int				wall_height;
 	int				wall_top;
@@ -103,10 +102,6 @@ void	raycast(t_data *data, float player_x, float player_y,
 		wall_top = wall_top < 0 ? 0 : wall_top;
 		wall_bottom = HEIGHT / 2 + wall_height / 2;
 		wall_bottom = wall_bottom > HEIGHT ? HEIGHT : wall_bottom;
-		t.x0 = p.i;
-		t.y0 = wall_top;
-		t.x1 = p.i;
-		t.y1 = wall_bottom;
 		img = NULL;
 		if (stat == 1 && p.ray_x > 0)
 		{

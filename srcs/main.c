@@ -23,11 +23,7 @@ void	ft_hook(void *param)
 {
 	t_data	*data;
 	t_var	p;
-	int		x;
-	int		y;
-
-	x = 0;
-	y = 0;
+	
 	data = (t_data *)param;
 	p.speed = 3;
 	p.new_px = data->pl.px;

@@ -63,9 +63,6 @@ int	is_surrounded(char **map)
 }
 void	parse_params_2(t_data *data, char *line, int *is)
 {
-	char	*tmp;
-
-	tmp = NULL;
 	if (ft_strncmp(line, "F ", 2) == 0)
 	{
 		data->world.floor_c = ft_strtrim(line + 2, " \t\n");
@@ -80,9 +77,6 @@ void	parse_params_2(t_data *data, char *line, int *is)
 
 void	parse_params(t_data *data, char *line, int *is)
 {
-	char	*tmp;
-
-	tmp = NULL;
 	if (ft_strncmp(line, "NO ", 3) == 0)
 	{
 		data->world.no = ft_strtrim(line + 3, " \t\n");
