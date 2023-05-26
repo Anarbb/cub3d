@@ -6,7 +6,7 @@
 /*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 18:45:52 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/05/25 09:21:42 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/05/26 13:56:30 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,6 @@ void	change_angle(t_data *data)
 
 void	move_player(t_data *data, t_var *p)
 {
-	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT_SHIFT))
-		p->speed = 1;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 		exit(1);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_S))
