@@ -6,7 +6,7 @@
 /*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 00:34:22 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/05/25 09:21:49 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/06/03 15:46:39 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,9 @@ typedef struct s_engine
 	int				wall_top;
 	int				wall_bottom;
 	int				i;
+	float		player_x;
+	float		player_y;
+	float		player_angle;
 }					t_engine;
 
 typedef struct s_world
