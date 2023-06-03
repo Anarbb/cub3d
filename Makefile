@@ -10,6 +10,7 @@ LIBS	:= -lglfw -L/Volumes/L/.brew/opt/glfw/lib
 SRCS := srcs/main.c \
 		srcs/parsing/parse.c \
 		srcs/engine/raycast.c \
+		srcs/engine/raycast_calc.c \
 		srcs/engine/player.c \
 		srcs/engine/skybox.c \
 		srcs/utils/is_map.c \
