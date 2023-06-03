@@ -6,7 +6,7 @@
 /*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 15:59:18 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/03 15:59:57 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/06/03 16:56:21 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	raycast(t_data *data, float player_x, float player_y,
 		calculate_ray_step(&p, player_x, player_y);
 		correct_distortion(&p, player_x, player_y);
 		p.hit = 0;
-		perform_dda(&p, data, player_x, player_y);
+		perform_dda(&p, data);
 		p.line_end_x = player_x + p.ray_x * p.perp_dist;
 		p.line_end_y = player_y + p.ray_y * p.perp_dist;
 		p.player_angle = player_angle;

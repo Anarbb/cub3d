@@ -1,6 +1,6 @@
 NAME	:= cub3D
 CC		:= cc
-CFLAGS	:= -Iinclude #-Wall -Wextra -Werror -g
+CFLAGS	:= -Iinclude -Wall -Wextra -Werror -Ofast
 HEADERS	:= include/cub3d.h
 LIBFT	:= libs/libft.a
 MLX		:= libs/libmlx.a

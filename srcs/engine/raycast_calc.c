@@ -6,7 +6,7 @@
 /*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 13:34:02 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/03 16:28:43 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/06/03 16:56:09 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	calculate_ray_step(t_engine *p, float player_x, float player_y)
 	p->step_y = get_step(p->ray_y);
 }
 
-void	perform_dda(t_engine *p, t_data *data, float player_x, float player_y)
+void	perform_dda(t_engine *p, t_data *data)
 {
 	while (!p->hit)
 	{
