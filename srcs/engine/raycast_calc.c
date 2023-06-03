@@ -6,7 +6,7 @@
 /*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 13:34:02 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/03 15:59:41 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/06/03 16:28:43 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,14 @@ void	perform_dda(t_engine *p, t_data *data, float player_x, float player_y)
 			p->side_dist_x += p->delta_dist_x;
 			p->map_x += p->step_x;
 			p->hit = data->world.map[p->map_y / 32][p->map_x / 32] == '1';
-			p->perp_dist = (p->map_x - player_x + (1 - p->step_x) / 2)
-				/ p->ray_x;
+			p->perp_dist = p->side_dist_x - p->delta_dist_x;
 		}
 		else
 		{
 			p->side_dist_y += p->delta_dist_y;
 			p->map_y += p->step_y;
 			p->hit = data->world.map[p->map_y / 32][p->map_x / 32] == '1';
-			p->perp_dist = (p->map_y - player_y + (1 - p->step_y) / 2)
-				/ p->ray_y;
+			p->perp_dist = p->side_dist_y - p->delta_dist_y;
 		}
 	}
 }
