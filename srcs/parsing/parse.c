@@ -6,7 +6,7 @@
 /*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 17:24:39 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/05/24 14:39:28 by ybenlafk         ###   ########.fr       */
+/*   Updated: 2023/06/03 17:03:14 by ybenlafk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ int	is_surrounded(char **map)
 		p.j = 0;
 		while (map[p.i][p.j] && map[p.i][p.j] != '\n')
 		{
-			if (map[p.i][p.j] == '0')
+			if (map[p.i][p.j] == '0' || map[p.i][p.j] == 'W' || map[p.i][p.j] == 'E'
+				|| map[p.i][p.j] == 'S' || map[p.i][p.j] == 'N')
 				if (is_valid(&p, map))
 					return (1);
 			p.j++;
@@ -63,14 +64,21 @@ int	is_surrounded(char **map)
 }
 void	parse_params_2(t_data *data, char *line, int *is)
 {
+	char	*tmp;
+
+	tmp = NULL;
 	if (ft_strncmp(line, "F ", 2) == 0)
 	{
 		data->world.floor_c = ft_strtrim(line + 2, " \t\n");
+		if (*data->world.floor_c == '\0')
+			ft_error("Error\n");
 		(*is)++;
 	}
 	else if (ft_strncmp(line, "C ", 2) == 0)
 	{
 		data->world.ceil_c = ft_strtrim(line + 2, " \t\n");
+		if (*data->world.ceil_c == '\0')
+			ft_error("Error\n");
 		(*is)++;
 	}
 }
