@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   skybox.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 20:18:26 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/05/24 14:29:48 by ybenlafk         ###   ########.fr       */
+/*   Updated: 2023/06/03 16:55:16 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int	is_digit(int c)
 
 int	all_int(char **av)
 {
-	int	i;
-	int	j;
-	char *s;
+	int		i;
+	int		j;
+	char	*s;
 
 	i = 0;
 	while (av[i])

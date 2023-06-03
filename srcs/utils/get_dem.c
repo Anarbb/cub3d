@@ -6,20 +6,25 @@
 /*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 13:48:53 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/05/24 13:51:57 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/06/03 16:53:57 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void calculate_map_dimensions(t_data* data)
+void	calculate_map_dimensions(t_data *data)
 {
-	char **map = data->world.map;
-	int i = 0;
-	int j = 0;
-	int max = 0;
-	int count = 0;
-	
+	char	**map;
+	int		i;
+	int		j;
+	int		max;
+	int		count;
+
+	map = data->world.map;
+	i = 0;
+	j = 0;
+	max = 0;
+	count = 0;
 	while (map[i])
 	{
 		j = 0;
