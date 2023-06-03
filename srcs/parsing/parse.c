@@ -6,7 +6,7 @@
 /*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 17:24:39 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/03 17:03:14 by ybenlafk         ###   ########.fr       */
+/*   Updated: 2023/06/03 17:09:22 by ybenlafk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,11 +120,9 @@ void	is_valid_map(char **map)
 		j = 0;
 		while (map[i][j] && map[i][j] != '\n')
 		{
-			if (map[i][j] != 'N' && map[i][j] != 'S'
-			&& map[i][j] != 'E' && map[i][j] != 'W'
-			&& map[i][j] != '0' && map[i][j] != '1'
-			&& map[i][j] != ' ' && map[i][j] != '\t'
-			&& map[i][j] != '\n')
+			if (map[i][j] != 'N' && map[i][j] != 'S' && map[i][j] != 'E'
+				&& map[i][j] != 'W' && map[i][j] != '0' && map[i][j] != '1'
+				&& map[i][j] != ' ' && map[i][j] != '\t' && map[i][j] != '\n')
 				ft_error("Error\n");
 			j++;
 		}
@@ -136,7 +134,7 @@ void	check_player(t_data *data)
 {
 	int	i;
 	int	j;
-	int cut;
+	int	cut;
 
 	cut = 0;
 	i = 0;
@@ -168,7 +166,7 @@ void	fill_data(t_data *data, char *line, int fd, int is)
 		line = get_next_line(fd);
 	}
 	if (is != 6)
-			exit(0);
+		exit(0);
 	while (line && *line)
 	{
 		if (!is_map(line))
@@ -187,9 +185,9 @@ void	fill_data(t_data *data, char *line, int fd, int is)
 
 void	init_parse(t_data *data, char *map_fi)
 {
-	int fd;
-	char *line;
-	static int is;
+	int			fd;
+	char		*line;
+	static int	is;
 
 	if (ft_strcmp(".cub", map_fi + (ft_strlen(map_fi) - 4)))
 		ft_error("Error\n");

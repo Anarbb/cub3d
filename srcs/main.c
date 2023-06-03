@@ -6,7 +6,7 @@
 /*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 17:16:54 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/05/25 09:21:24 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/06/03 16:33:57 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_hook(void *param)
 {
 	t_data	*data;
 	t_var	p;
-	
+
 	data = (t_data *)param;
 	p.speed = 3;
 	p.new_px = data->pl.px;
@@ -53,7 +53,7 @@ void	fill_png(unsigned int *list, mlx_texture_t *png)
 	}
 }
 
-int check_texture(t_data *data)
+int	check_texture(t_data *data)
 {
 	if (!data->NO || !data->SO || !data->WE || !data->EA)
 		return (1);
