@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_calc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 13:34:02 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/03 16:56:09 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/06/10 19:08:46 by ybenlafk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,20 @@ void	perform_dda(t_engine *p, t_data *data)
 	{
 		if (p->side_dist_x < p->side_dist_y)
 		{
+			p->stat = 1;
 			p->side_dist_x += p->delta_dist_x;
 			p->map_x += p->step_x;
-			p->hit = data->world.map[p->map_y / 32][p->map_x / 32] == '1';
 			p->perp_dist = p->side_dist_x - p->delta_dist_x;
 		}
 		else
 		{
+			p->stat = 2;
 			p->side_dist_y += p->delta_dist_y;
 			p->map_y += p->step_y;
-			p->hit = data->world.map[p->map_y / 32][p->map_x / 32] == '1';
 			p->perp_dist = p->side_dist_y - p->delta_dist_y;
 		}
+		if (data->world.map[p->map_y / 32][p->map_x / 32] == '1')
+			p->hit = 1;
 	}
 }
 

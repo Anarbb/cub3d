@@ -1,7 +1,7 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+NO  ./assets/textures/STARG3_64.png
+WE  ./assets/textures/STARG3_64.png
+EA  ./assets/textures/STARG2_64.png
+SO  ./assets/textures/STARG2_64.png
 
 F 124,142,12
 C 12,220,125
@@ -10,7 +10,7 @@ C 12,220,125
 1000000001
 1111000001
 1000000001
-100S001001
-1020001001
+1W00001001
+1000001001
 1000001001
 1111111111

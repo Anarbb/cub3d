@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 00:34:22 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/03 16:56:32 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/06/10 19:21:54 by ybenlafk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,13 @@ typedef struct s_engine
 	float			player_x;
 	float			player_y;
 	float			player_angle;
+	int			offset_x;
+	int			offset_y;
+	mlx_texture_t	*img;
+	unsigned int	*tex;
+	int				stat;
+	int				dis_from_top;
+	int				color;
 }					t_engine;
 
 typedef struct s_world

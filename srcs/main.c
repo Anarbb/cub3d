@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 17:16:54 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/03 16:33:57 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/06/05 10:40:55 by ybenlafk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,15 +87,15 @@ int	main(int ac, char **av)
 	data->SO = mlx_load_png(data->world.so);
 	data->WE = mlx_load_png(data->world.we);
 	data->EA = mlx_load_png(data->world.ea);
-	data->world.walls = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-	if (!data->NO || !data->SO || !data->WE || !data->EA)
+	if (!data->NO || !data->SO || !data->WE || !data->EA || check_texture(data))
 		exit(1);
 	fill_png(data->tex_NO, data->NO);
 	fill_png(data->tex_EA, data->EA);
 	fill_png(data->tex_SO, data->SO);
 	fill_png(data->tex_WE, data->WE);
+	data->world.walls = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	data->world.skybox = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-	data->pl.img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+	// data->pl.img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	skybox(data);
 	init_player(data);
 	mlx_image_to_window(data->mlx, data->world.skybox, 0, 0);
