@@ -6,7 +6,7 @@
 /*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 15:59:18 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/10 19:21:11 by ybenlafk         ###   ########.fr       */
+/*   Updated: 2023/06/10 20:11:32 by ybenlafk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,12 @@ void	raycast(t_data *data, float player_x, float player_y,
 		p.line_end_y = player_y + p.ray_y * p.perp_dist;
 		p.player_angle = player_angle;
 		calculate_wall_height(&p, &wall_height, &wall_top, &wall_bottom);
-		// draw_wall_segment(&p, data, wall_top, wall_bottom);
 		get_tex_dir(&p, data);
 		for (int i = wall_top; i < wall_bottom; i++)
 		{
 			p.dis_from_top = i + (wall_height / 2) - (HEIGHT / 2);
 			p.offset_y = p.dis_from_top * (float)p.img->height / wall_height;
-			p.color = p.tex[p.img->width * p.offset_x + p.offset_y];
+			p.color = p.tex[p.img->width * p.offset_y + p.offset_x];
 			mlx_put_pixel(data->world.walls, p.i, i, p.color);
 		}
 		p.ray_angle += p.ray_angle_step;

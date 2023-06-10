@@ -6,7 +6,7 @@
 /*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 13:34:02 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/10 19:08:46 by ybenlafk         ###   ########.fr       */
+/*   Updated: 2023/06/10 20:11:40 by ybenlafk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,6 @@ void	perform_dda(t_engine *p, t_data *data)
 	}
 }
 
-void	draw_wall_segment(t_engine *p, t_data *data, int wall_top,
-		int wall_bottom)
-{
-	int	i;
-
-	i = wall_top;
-	while (i < wall_bottom)
-	{
-		mlx_put_pixel(data->world.walls, p->i, i, 0xFFFFFFFF);
-		i++;
-	}
-}
 
 void	correct_distortion(t_engine *p, float player_x, float player_y)
 {
