@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 00:34:22 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/10 19:21:54 by ybenlafk         ###   ########.fr       */
+/*   Updated: 2023/06/11 15:29:00 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "MLX42/MLX42.h"
+# include "../MLX42/MLX42.h"
 # include "get_next_line.h"
 # include "libft.h"
 # include <math.h>
