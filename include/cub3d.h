@@ -3,36 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 00:34:22 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/11 15:29:00 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/06/12 20:12:05 by ybenlafk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "../MLX42/MLX42.h"
+# include "MLX42/MLX42.h"
 # include "get_next_line.h"
 # include "libft.h"
 # include <math.h>
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
-# define PI 3.14159265358979323846
-# define ERROR 0
-# define SUCCESS 1
+#include <limits.h>
 # define WIDTH 1440
 # define HEIGHT 1080
 # define FOV 1.0472        // Field of View (60 degrees in radians)
-# define NUM_RAYS WIDTH    // Number of rays to cast
-# define VIEW_ANGLE 1.0472 // Viewing angle (60 degrees in radians)
-# define WALL_SCALE 30     // Wall scale factor
-# define MAX_RENDER_DISTANCE 1000
-# define MAXWIDTH 64
-# define MAXHEIGHT 64
-# define SENSE 0.7
+# define NUM_RAYS WIDTH
+# define TILE_SIZE 32
+
+typedef struct s_ray
+{
+	mlx_image_t		*img;
+	float			ray_angle;
+	float			wall_hit_x;
+	float			wall_hit_y;
+	float			distance;
+}	t_ray;
 
 typedef struct s_line
 {
@@ -62,6 +64,12 @@ typedef struct s_var
 	int				l;
 	int				x;
 	int				y;
+	int				k;
+
+	int is_ray_facing_down;
+    int is_ray_facing_up;
+    int is_ray_facing_right;
+    int is_ray_facing_left;
 
 	float			speed;
 	float			new_px;
@@ -134,42 +142,32 @@ typedef struct s_world
 typedef struct s_data
 {
 	void			*mlx;
+	mlx_image_t		*img;
+	mlx_image_t		*line;
 	t_engine		eng;
 	t_player		pl;
 	t_world			world;
 	t_var			vr;
-	mlx_texture_t	*NO;
-	mlx_texture_t	*SO;
-	mlx_texture_t	*WE;
-	mlx_texture_t	*EA;
-	unsigned int	tex_NO[10000000];
-	unsigned int	tex_SO[10000000];
-	unsigned int	tex_WE[10000000];
-	unsigned int	tex_EA[10000000];
+	t_ray			rays[NUM_RAYS];
+	// mlx_texture_t	*NO;
+	// mlx_texture_t	*SO;
+	// mlx_texture_t	*WE;
+	// mlx_texture_t	*EA;
+	// unsigned int	tex_NO[10000000];
+	// unsigned int	tex_SO[10000000];
+	// unsigned int	tex_WE[10000000];
+	// unsigned int	tex_EA[10000000];
 }					t_data;
-//engine
-void				raycast(t_data *data, float player_x, float player_y,
-						float player_angle);
-void				init_player(t_data *data);
-void				minimap(t_data *data);
-void				skybox(t_data *data);
-void				check_movment(t_data *data, float new_px, float new_py);
-void				move_player(t_data *data, t_var *p);
-void				calculate_ray_step(t_engine *p, float player_x,
-						float player_y);
-void				perform_dda(t_engine *p, t_data *data);
-void				draw_wall_segment(t_engine *p, t_data *data, int wall_top,
-						int wall_bottom);
-void				correct_distortion(t_engine *p, float player_x,
-						float player_y);
-void				calculate_wall_height(t_engine *p, int *wall_height,
-						int *wall_top, int *wall_bottom);
+
+// raycasting
+void    raycasting(t_data *data);
+
 // parsing
 void				init_parse(t_data *data, char *map_fi);
 // utils
+void mlx_draw_line(mlx_image_t *image, int x1, int y1, int x2, int y2, int color);
 int					is_map(char *line);
 int					get_step(float x);
-void				mlx_draw_line(mlx_image_t *image, t_line t, int color);
 int					get_rgba(int r, int g, int b, int a);
 int					get_rgb(int r, int g, int b);
 void				free_all(char **s);

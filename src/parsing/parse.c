@@ -6,7 +6,7 @@
 /*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 17:24:39 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/03 17:09:22 by ybenlafk         ###   ########.fr       */
+/*   Updated: 2023/06/11 23:17:32 by ybenlafk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,8 +174,7 @@ void	fill_data(t_data *data, char *line, int fd, int is)
 		if (line && *line)
 		{
 			data->world.map[i] = ft_strdup(line);
-			data->world.map = ft_realloc(data->world.map, (++i + 1)
-					* sizeof(char *));
+			data->world.map = ft_realloc(data->world.map, (++i + 1) * sizeof(char *));
 		}
 		free(line);
 		line = get_next_line(fd);
