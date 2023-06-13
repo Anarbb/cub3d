@@ -6,7 +6,7 @@
 /*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 00:34:22 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/13 18:16:41 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/06/13 18:29:32 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,6 @@
 
 typedef struct s_var
 {
-	int				dx;
-	int				dy;
-	int				sx;
-	int				sy;
-	int				err;
-	int				e2;
 	int				i;
 	int				j;
 	int				l;
@@ -54,6 +48,8 @@ typedef struct s_var
 	float			new_py;
 	int				cell_x;
 	int				cell_y;
+	int				left_cell_x;
+	int				right_cell_x;
 }					t_var;
 
 typedef struct s_player

@@ -6,7 +6,7 @@
 /*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 17:16:54 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/13 18:18:41 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/06/13 18:28:47 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,23 +121,23 @@ void	draw_map(t_data *data)
 
 void check_collision(t_data *data, t_var *p)
 {
-    int cell_x = (int)(p->new_px / 32);
-    int cell_y = (int)(p->new_py / 32);
-    int left_cell_x = (int)((p->new_px - PLAYER_SIZE / 2) / 32);
-    int right_cell_x = (int)((p->new_px + PLAYER_SIZE / 2) / 32);
-    if (data->world.map[cell_y][cell_x] == '1')
+    p->cell_x = (int)(p->new_px / 32);
+    p->cell_y = (int)(p->new_py / 32);
+    p->left_cell_x = (int)((p->new_px - PLAYER_SIZE / 2) / 32);
+    p->right_cell_x = (int)((p->new_px + PLAYER_SIZE / 2) / 32);
+    if (data->world.map[p->cell_y][p->cell_x] == '1')
     {
         p->new_px = data->pl.px;
         p->new_py = data->pl.py;
         return;
     }
-    if (left_cell_x >= 0 && data->world.map[cell_y][left_cell_x] == '1')
+    if (p->left_cell_x >= 0 && data->world.map[p->cell_y][p->left_cell_x] == '1')
     {
         p->new_px = data->pl.px;
         p->new_py = data->pl.py;
         return;
     }
-    if (right_cell_x < WIDTH / 32 && data->world.map[cell_y][right_cell_x] == '1')
+    if (p->right_cell_x < WIDTH / 32 && data->world.map[p->cell_y][p->right_cell_x] == '1')
     {
         p->new_px = data->pl.px;
         p->new_py = data->pl.py;
