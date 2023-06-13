@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 17:16:54 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/13 17:15:40 by ybenlafk         ###   ########.fr       */
+/*   Updated: 2023/06/13 18:18:41 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,19 +119,34 @@ void	draw_map(t_data *data)
 	}
 }
 
-void	check_collision(t_data *data, t_var *p)
+void check_collision(t_data *data, t_var *p)
 {
-	if (data->world.map[(int)p->new_py / 32][(int)p->new_px / 32] == '1')
-	{
-		p->new_px = data->pl.px;
-		p->new_py = data->pl.py;
-	}
-	else
-	{
-		data->pl.px = p->new_px;
-		data->pl.py = p->new_py;
-	}
+    int cell_x = (int)(p->new_px / 32);
+    int cell_y = (int)(p->new_py / 32);
+    int left_cell_x = (int)((p->new_px - PLAYER_SIZE / 2) / 32);
+    int right_cell_x = (int)((p->new_px + PLAYER_SIZE / 2) / 32);
+    if (data->world.map[cell_y][cell_x] == '1')
+    {
+        p->new_px = data->pl.px;
+        p->new_py = data->pl.py;
+        return;
+    }
+    if (left_cell_x >= 0 && data->world.map[cell_y][left_cell_x] == '1')
+    {
+        p->new_px = data->pl.px;
+        p->new_py = data->pl.py;
+        return;
+    }
+    if (right_cell_x < WIDTH / 32 && data->world.map[cell_y][right_cell_x] == '1')
+    {
+        p->new_px = data->pl.px;
+        p->new_py = data->pl.py;
+        return;
+    }
+    data->pl.px = p->new_px;
+    data->pl.py = p->new_py;
 }
+
 
 void	ft_hook(void	*param)
 {
