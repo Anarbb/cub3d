@@ -6,7 +6,7 @@
 /*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 17:16:54 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/13 13:21:13 by ybenlafk         ###   ########.fr       */
+/*   Updated: 2023/06/13 15:00:07 by ybenlafk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,21 +50,6 @@ void mlx_draw_line(mlx_image_t *image, int x1, int y1, int x2, int y2, int color
 	}
 }
 
-void	draw_mini_square(t_var *p, t_data *data)
-{
-	p->l = 0;
-	while (p->l < 10)
-	{
-		p->k = 0;
-		while (p->k < 10)
-		{
-			mlx_put_pixel(data->pl.img, p->j + p->k, p->i + p->l, 0xFFF00FF);
-			p->k++;
-		}
-		p->l++;
-	}
-}
-
 void	draw_square(t_var *p, t_data *data)
 {
 	p->x = p->j * 32;
@@ -82,7 +67,7 @@ void	draw_square(t_var *p, t_data *data)
 	}
 }
 
-void	draw_player(t_data *data)
+void	init_player(t_data *data)
 {
 	t_var p;
 	static int i;
@@ -95,11 +80,11 @@ void	draw_player(t_data *data)
 			if (data->world.map[p.i][p.j] == 'W' || data->world.map[p.i][p.j] == 'E'
 				|| data->world.map[p.i][p.j] == 'N' || data->world.map[p.i][p.j] == 'S')
 				{
-					draw_mini_square(&p, data);
 					if (i++ == 0)
 					{
 						data->pl.px = p.j * 32;
 						data->pl.py = p.i * 32;
+						data->pl.pa = 0;
 						data->pl.pdx = cos(data->pl.pa) * 5;
 						data->pl.pdy = sin(data->pl.pa) * 5;
 					}
@@ -186,27 +171,67 @@ void	ft_hook(void	*param)
 	raycasting(data);
 }
 
+void	fill_png(unsigned int *list, mlx_texture_t *png)
+{
+	unsigned int	i;
+	unsigned int	j;
 
+	i = 0;
+	j = 0;
+	while (png->pixels[i] && j < png->width * png->height)
+	{
+		list[j] = get_rgba(png->pixels[i], png->pixels[i + 1], png->pixels[i
+				+ 2], 255);
+		i += 4;
+		j++;
+	}
+}
+
+int	check_texture(t_data *data)
+{
+	if (!data->NO || !data->SO || !data->WE || !data->EA)
+		return (1);
+	if (data->NO->height != 64 || data->NO->width != 64)
+		return (printf("Error\n🚨: Image error\n"), 1);
+	if (data->SO->height != 64 || data->SO->width != 64)
+		return (printf("Error\n🚨: Image error\n"), 1);
+	if (data->WE->height != 64 || data->WE->width != 64)
+		return (printf("Error\n🚨: Image error\n"), 1);
+	if (data->EA->height != 64 || data->EA->width != 64)
+		return (printf("Error\n🚨: Image error\n"), 1);
+	return (0);
+}
 
 int	main(int ac, char **av)
 {
-	t_data data;
+	t_data *data;
 
+	data = ft_calloc(1, sizeof(t_data));
+	if (!data)
+		return (0);
 	if (ac != 2)
 		return (0);
-	data.mlx = mlx_init(WIDTH, HEIGHT, "Cub3D", false);
-	init_parse(&data, av[1]);
-	calculate_map_dimensions(&data);
-	data.img = mlx_new_image(data.mlx, WIDTH, HEIGHT);
-	data.line = mlx_new_image(data.mlx, WIDTH, HEIGHT);
-	data.wall = mlx_new_image(data.mlx, WIDTH, HEIGHT);
-	data.pl.img = mlx_new_image(data.mlx, 32, 32);
-	// draw_map(&data);
-	draw_player(&data);
-	mlx_image_to_window(data.mlx, data.img, 0, 0);
-	mlx_image_to_window(data.mlx, data.line, 0, 0);
-	// mlx_image_to_window(data.mlx, data.pl.img, data.pl.px, data.pl.py);
-	mlx_loop_hook(data.mlx, ft_hook, &data);
-	mlx_loop(data.mlx);
+	data->mlx = mlx_init(WIDTH, HEIGHT, "Cub3D", false);
+	init_parse(data, av[1]);
+	calculate_map_dimensions(data);
+	data->NO = mlx_load_png(data->world.no);
+	data->SO = mlx_load_png(data->world.so);
+	data->WE = mlx_load_png(data->world.we);
+	data->EA = mlx_load_png(data->world.ea);
+	if (!data->NO || !data->SO || !data->WE || !data->EA || check_texture(data))
+		exit(1);
+	fill_png(data->tex_NO, data->NO);
+	fill_png(data->tex_EA, data->EA);
+	fill_png(data->tex_SO, data->SO);
+	fill_png(data->tex_WE, data->WE);
+	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+	data->line = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+	data->wall = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+	// draw_map(data);
+	init_player(data);
+	mlx_image_to_window(data->mlx, data->img, 0, 0);
+	mlx_image_to_window(data->mlx, data->line, 0, 0);
+	mlx_loop_hook(data->mlx, ft_hook, data);
+	mlx_loop(data->mlx);
 	return (0);
 }

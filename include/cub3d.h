@@ -6,7 +6,7 @@
 /*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 00:34:22 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/13 12:37:59 by ybenlafk         ###   ########.fr       */
+/*   Updated: 2023/06/13 16:01:26 by ybenlafk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,29 +27,6 @@
 # define NUM_RAYS WIDTH
 # define TILE_SIZE 32
 
-typedef struct s_ray
-{
-	mlx_image_t		*img;
-	float			ray_angle;
-	float			wall_hit_x;
-	float			wall_hit_y;
-	float			distance;
-}	t_ray;
-
-typedef struct s_line
-{
-	int				x0;
-	int				x1;
-	int				x2;
-	int				x3;
-
-	int				y0;
-	int				y1;
-	int				y2;
-	int				y3;
-
-	int				size;
-}					t_line;
 
 typedef struct s_var
 {
@@ -131,6 +108,15 @@ typedef struct s_engine
 	float wall_top;
 	float wall_bottom;
 
+	int state;
+	
+	int offset_x;
+	int offset_y;
+	int dist_from_top;
+	mlx_texture_t	*img;
+	unsigned int	*tex;
+	int				color;
+	
 }					t_engine;
 
 typedef struct s_world
@@ -159,15 +145,16 @@ typedef struct s_data
 	t_player		pl;
 	t_world			world;
 	t_var			vr;
-	t_ray			rays[NUM_RAYS];
-	// mlx_texture_t	*NO;
-	// mlx_texture_t	*SO;
-	// mlx_texture_t	*WE;
-	// mlx_texture_t	*EA;
-	// unsigned int	tex_NO[10000000];
-	// unsigned int	tex_SO[10000000];
-	// unsigned int	tex_WE[10000000];
-	// unsigned int	tex_EA[10000000];
+	
+	mlx_texture_t	*NO;
+	mlx_texture_t	*SO;
+	mlx_texture_t	*WE;
+	mlx_texture_t	*EA;
+
+	unsigned int	tex_NO[10000000];
+	unsigned int	tex_SO[10000000];
+	unsigned int	tex_WE[10000000];
+	unsigned int	tex_EA[10000000];
 }					t_data;
 
 // raycasting

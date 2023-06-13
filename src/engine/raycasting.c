@@ -6,7 +6,7 @@
 /*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 11:39:18 by ybenlafk          #+#    #+#             */
-/*   Updated: 2023/06/13 13:19:54 by ybenlafk         ###   ########.fr       */
+/*   Updated: 2023/06/13 16:13:54 by ybenlafk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int hasWallAt(t_data *data, float x, float y)
 
     map_x = floor(x / TILE_SIZE);
     map_y = floor(y / TILE_SIZE);
-    if (x < 0 || x > WIDTH || y < 0 || y > HEIGHT)
-        return (1);
+    // if (x < 0 || x > WIDTH || y < 0 || y > HEIGHT)
+    //     return (1);
     
     if (map_y < 0 || map_y >= data->world.map_height)
         return (1);
@@ -153,28 +153,56 @@ void    do_it(t_data *data, float ray_angle, t_engine *p)
         p->distance_v = INT_MAX;
     if (p->distance_v < p->distance_h)
     {
+        p->state = 1;
         p->hit_x = p->hit_v_x;
         p->hit_y = p->hit_v_y;
         p->distance = p->distance_v;
     }
     else
     {
+        p->state = 2;
         p->hit_x = p->hit_h_x;
         p->hit_y = p->hit_h_y;
         p->distance = p->distance_h;
     }
-    // mlx_draw_line(data->line, data->pl.px, data->pl.py, p->hit_x, p->hit_y, 0xFF000FF);
-	// mlx_image_to_window(data->mlx, data->line, 0, 0);
+}
+
+void    get_offset(t_engine *p, t_data *data)
+{
+    if (p->state == 1 && p->is_ray_facing_right)
+    {
+        p->img = data->EA;
+        p->tex = data->tex_EA;
+    }
+    else if (p->state == 1 && p->is_ray_facing_left)
+    {
+        p->img = data->WE;
+        p->tex = data->tex_WE;
+    }
+    else if (p->state == 2 && p->is_ray_facing_up)
+    {
+        p->img = data->NO;
+        p->tex = data->tex_NO;
+    }
+    else if (p->state == 2 && p->is_ray_facing_down)
+    {
+        p->img = data->SO;
+        p->tex = data->tex_SO;
+    }
+    if (p->state == 1)
+        p->offset_x = (int)p->hit_y % p->img->width;
+    else if (p->state == 2)
+        p->offset_x = (int)p->hit_x % p->img->width;
 }
 
 void    raycasting(t_data *data)
 {   
     t_engine p;
+
+    p.state = 0;
     float ray_angle = data->pl.pa - (FOV / 2);
     int i = 0;
     mlx_delete_image(data->mlx, data->wall);
-    // mlx_delete_image(data->mlx, data->line);
-	// data->line = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	data->wall = mlx_new_image(data->mlx, WIDTH, HEIGHT);
     while (i < NUM_RAYS)
     {
@@ -186,8 +214,14 @@ void    raycasting(t_data *data)
         p.wall_top = p.wall_top < 0 ? 0 : p.wall_top;
         p.wall_bottom = (HEIGHT / 2) + (p.wall_hight / 2);
         p.wall_bottom = p.wall_bottom > HEIGHT ? HEIGHT : p.wall_bottom;
+        get_offset(&p, data);
         for (int j = p.wall_top; j < p.wall_bottom; j++)
-            mlx_put_pixel(data->wall, i, j, 0xFFFFFFFF);
+        {
+            p.dist_from_top = j + (p.wall_hight / 2) - (HEIGHT / 2);
+            p.offset_y = p.dist_from_top * ((float)p.img->height / p.wall_hight);
+            p.color = p.tex[p.img->width * p.offset_y + p.offset_x];
+            mlx_put_pixel(data->wall, i, j, p.color);
+        }
         mlx_image_to_window(data->mlx, data->wall, 0, 0);
         ray_angle += FOV / NUM_RAYS;
         i++;
