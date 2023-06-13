@@ -6,11 +6,39 @@
 /*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 17:16:54 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/13 18:28:47 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/06/13 18:43:20 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	change_angle(t_data *data)
+{
+	int	mx;
+	int	my;
+
+	mx = 0;
+	my = 0;
+	mlx_set_cursor_mode(data->mlx, MLX_MOUSE_HIDDEN);
+	mlx_get_mouse_pos(data->mlx, &mx, &my);
+	data->pl.pa += (mx - 500) / 500.0 * SENSE;
+	data->pl.pdx = cos(data->pl.pa) * 5;
+	data->pl.pdy = sin(data->pl.pa) * 5;
+	mlx_set_mouse_pos(data->mlx, 500, 500);
+	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
+	{
+		data->pl.pa -= 0.04;
+		data->pl.pdx = cos(data->pl.pa) * 5;
+		data->pl.pdy = sin(data->pl.pa) * 5;
+	}
+	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
+	{
+		data->pl.pa += 0.04;
+		data->pl.pdx = cos(data->pl.pa) * 5;
+		data->pl.pdy = sin(data->pl.pa) * 5;
+	}
+}
+
 
 void mlx_draw_line(mlx_image_t *image, int x1, int y1, int x2, int y2, int color)
 {
@@ -167,18 +195,10 @@ void	ft_hook(void	*param)
 		p.new_px -= data->pl.pdx / 2;
 		p.new_py -= data->pl.pdy / 2;
 	}
-	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
-	{
-		data->pl.pa += 0.05;
-		data->pl.pdx = cos(data->pl.pa) * 5;
-		data->pl.pdy = sin(data->pl.pa) * 5;
-	}
-	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
-	{
-		data->pl.pa -= 0.05;
-		data->pl.pdx = cos(data->pl.pa) * 5;
-		data->pl.pdy = sin(data->pl.pa) * 5;
-	}
+	if (!mlx_is_key_down(data->mlx, MLX_KEY_K))
+		change_angle(data);
+	else
+		mlx_set_cursor_mode(data->mlx, MLX_MOUSE_NORMAL);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_A))
 	{
 		p.new_px += data->pl.pdy;
