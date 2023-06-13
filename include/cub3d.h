@@ -6,7 +6,7 @@
 /*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 00:34:22 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/13 16:01:26 by ybenlafk         ###   ########.fr       */
+/*   Updated: 2023/06/13 16:54:41 by ybenlafk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,16 @@ typedef struct s_data
 
 // raycasting
 void    raycasting(t_data *data);
+void    horz_caluls(t_engine *p, t_data *data, float ray_angle);
+void    get_horz(t_engine *p, t_data *data, float ray_angle);
+void    vert_claculs(t_engine *p, t_data *data, float ray_angle);
+void    get_vert(t_engine *p, t_data *data, float ray_angle);
+void    do_it(t_data *data, float ray_angle, t_engine *p);
+int 	hasWallAt(t_data *data, float x, float y);
+float 	get_distance(float x1, float y1, float x2, float y2);
+float   normalizeAngle(float angle);
+void    init_ray_dirs(t_engine *p, float ray_angle);
+void    get_offset(t_engine *p, t_data *data);
 
 // parsing
 void				init_parse(t_data *data, char *map_fi);

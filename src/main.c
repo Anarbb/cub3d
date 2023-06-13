@@ -6,7 +6,7 @@
 /*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 17:16:54 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/13 15:00:07 by ybenlafk         ###   ########.fr       */
+/*   Updated: 2023/06/13 17:15:40 by ybenlafk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,26 @@ void	draw_square(t_var *p, t_data *data)
 	}
 }
 
+void init_start_angle(t_var p, t_data *data)
+{
+	data->pl.px = p.j * 32;
+	data->pl.py = p.i * 32;
+	if (data->world.map[p.i][p.j] == 'W')
+		data->pl.pa = 3 * M_PI / 2;
+	else if (data->world.map[p.i][p.j] == 'E')
+		data->pl.pa = M_PI / 2;
+	else if (data->world.map[p.i][p.j] == 'N')
+		data->pl.pa = M_PI;
+	else if (data->world.map[p.i][p.j] == 'S')
+		data->pl.pa = 0;
+	data->pl.pdx = cos(data->pl.pa) * 5;
+	data->pl.pdy = sin(data->pl.pa) * 5;
+}
+
 void	init_player(t_data *data)
 {
 	t_var p;
-	static int i;
+
 	p.i = 0;
 	while (data->world.map[p.i])
 	{
@@ -79,16 +95,7 @@ void	init_player(t_data *data)
 		{
 			if (data->world.map[p.i][p.j] == 'W' || data->world.map[p.i][p.j] == 'E'
 				|| data->world.map[p.i][p.j] == 'N' || data->world.map[p.i][p.j] == 'S')
-				{
-					if (i++ == 0)
-					{
-						data->pl.px = p.j * 32;
-						data->pl.py = p.i * 32;
-						data->pl.pa = 0;
-						data->pl.pdx = cos(data->pl.pa) * 5;
-						data->pl.pdy = sin(data->pl.pa) * 5;
-					}
-				}
+				init_start_angle(p, data);
 			p.j++;
 		}
 		p.i++;
@@ -137,23 +144,23 @@ void	ft_hook(void	*param)
 		exit(0);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_UP) || mlx_is_key_down(data->mlx, MLX_KEY_W))
 	{
-		p.new_px += data->pl.pdx;
-		p.new_py += data->pl.pdy;
+		p.new_px += data->pl.pdx / 2;
+		p.new_py += data->pl.pdy / 2;
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_DOWN) || mlx_is_key_down(data->mlx, MLX_KEY_S))
 	{
-		p.new_px -= data->pl.pdx;
-		p.new_py -= data->pl.pdy;
+		p.new_px -= data->pl.pdx / 2;
+		p.new_py -= data->pl.pdy / 2;
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
 	{
-		data->pl.pa += 0.1;
+		data->pl.pa += 0.05;
 		data->pl.pdx = cos(data->pl.pa) * 5;
 		data->pl.pdy = sin(data->pl.pa) * 5;
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
 	{
-		data->pl.pa -= 0.1;
+		data->pl.pa -= 0.05;
 		data->pl.pdx = cos(data->pl.pa) * 5;
 		data->pl.pdy = sin(data->pl.pa) * 5;
 	}

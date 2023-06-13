@@ -1,6 +1,6 @@
 NAME	:= cub3D
 CC		:= gcc
-CFLAGS	:= -Iinclude -g #-Wall -Wextra -Werror -Ofast
+CFLAGS	:= -Iinclude  -Wall -Wextra -Werror -Ofast
 HEADERS	:= include/cub3d.h
 LIBFT	:= libs/libft.a
 MLX		:= libs/libmlx.a
@@ -12,6 +12,8 @@ SRCS := src/main.c \
 		src/engine/raycasting.c \
 		src/utils/is_map.c \
 		src/utils/get_map_size.c \
+		src/engine/raycast_util.c \
+		src/engine/raycast_util_1.c \
 		src/utils/ft_realloc.c \
 		src/utils/gnl/get_next_line_utils.c \
 		src/utils/free_all.c \
