@@ -6,21 +6,28 @@
 /*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 11:39:18 by ybenlafk          #+#    #+#             */
-/*   Updated: 2023/06/12 21:00:08 by ybenlafk         ###   ########.fr       */
+/*   Updated: 2023/06/13 13:19:54 by ybenlafk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
 int hasWallAt(t_data *data, float x, float y)
 {
+    int map_x;
+    int map_y;
+
+    map_x = floor(x / TILE_SIZE);
+    map_y = floor(y / TILE_SIZE);
     if (x < 0 || x > WIDTH || y < 0 || y > HEIGHT)
         return (1);
-    int mapGridIndexX = x / TILE_SIZE;
-    int mapGridIndexY = y / TILE_SIZE;
-    printf("mapGridIndexX = %d  ", mapGridIndexX);
-    printf("mapGridIndexY = %d\n", mapGridIndexY);
     
-    return (data->world.map[mapGridIndexY][mapGridIndexX] == '1');
+    if (map_y < 0 || map_y >= data->world.map_height)
+        return (1);
+    if (map_x < 0 || map_x >= ft_strlen(data->world.map[map_y]))
+        return (1);
+
+    return (data->world.map[map_y][map_x] == '1');
 }
 
 float get_distance(float x1, float y1, float x2, float y2)
@@ -35,123 +42,155 @@ float    normalizeAngle(float angle)
         angle = (2 * M_PI) + angle;
     return (angle);
 }
-void    raycasting(t_data *data)
+
+void    init_ray_dirs(t_engine *p, float ray_angle)
 {
-    float ray_angle = data->pl.pa - (FOV / 2);
+    p->is_ray_facing_down = ray_angle > 0 && ray_angle < M_PI;
+    p->is_ray_facing_up = !p->is_ray_facing_down;
+    p->is_ray_facing_right = ray_angle < 0.5 * M_PI || ray_angle > 1.5 * M_PI;
+    p->is_ray_facing_left = !p->is_ray_facing_right;
+}
+
+void    horz_caluls(t_engine *p, t_data *data, float ray_angle)
+{
+    p->y_intercept_h = floor(data->pl.py / TILE_SIZE) * TILE_SIZE;
+    if (p->is_ray_facing_down)
+        p->y_intercept_h += TILE_SIZE;
+    p->x_intercept_h = data->pl.px + (p->y_intercept_h - data->pl.py) / tan(ray_angle);
+    p->y_step_h = TILE_SIZE;
+    if (p->is_ray_facing_up)
+        p->y_step_h *= -1;
+
+    p->x_step_h = TILE_SIZE / tan(ray_angle);
+    if (p->is_ray_facing_left && p->x_step_h > 0)
+        p->x_step_h *= -1;
+    if (p->is_ray_facing_right && p->x_step_h < 0)
+        p->x_step_h *= -1;
+
+    p->hit_h_x = p->x_intercept_h;
+    p->hit_h_y = p->y_intercept_h;
+
+    if(p->is_ray_facing_up)
+        p->hit_h_y -= 0.01;
+}
+
+void    get_horz(t_engine *p, t_data *data, float ray_angle)
+{
+    p->h = 0;
+    p->v = 0;
+
+    init_ray_dirs(p, ray_angle);
+    horz_caluls(p, data, ray_angle);
+    while (1)
+    {
+        if (hasWallAt(data, p->hit_h_x, p->hit_h_y))
+        {
+            p->h = 1;
+            break;
+        }
+        else
+        {
+            p->hit_h_x += p->x_step_h;
+            p->hit_h_y += p->y_step_h;
+        }
+    }
+}
+
+void    vert_claculs(t_engine *p, t_data *data, float ray_angle)
+{
+    p->x_intercept_v = floor(data->pl.px / TILE_SIZE) * TILE_SIZE;
+    if (p->is_ray_facing_right)
+        p->x_intercept_v += TILE_SIZE;
+    p->y_intercept_v = data->pl.py + (p->x_intercept_v - data->pl.px) * tan(ray_angle);
+
+    p->x_step_v = TILE_SIZE;
+    if (p->is_ray_facing_left)
+        p->x_step_v *= -1;
+
+    p->y_step_v = TILE_SIZE * tan(ray_angle);
+    if (p->is_ray_facing_up && p->y_step_v > 0)
+        p->y_step_v *= -1;
+    if (p->is_ray_facing_down && p->y_step_v < 0)
+        p->y_step_v *= -1;
+    
+    p->hit_v_x = p->x_intercept_v;
+    p->hit_v_y = p->y_intercept_v;
+
+    if(p->is_ray_facing_left)
+        p->hit_v_x -= 0.01;
+}
+
+void    get_vert(t_engine *p, t_data *data, float ray_angle)
+{
+    vert_claculs(p, data, ray_angle);
+    while (1)
+    {
+        if (hasWallAt(data, p->hit_v_x, p->hit_v_y))
+        {
+            p->v = 1;
+            break;
+        }
+        else
+        {
+            p->hit_v_x += p->x_step_v;
+            p->hit_v_y += p->y_step_v;
+        }
+    }
+}
+
+void    do_it(t_data *data, float ray_angle, t_engine *p)
+{
     ray_angle = normalizeAngle(ray_angle);
-    int is_ray_facing_down;
-    int is_ray_facing_up;
-    int is_ray_facing_right;
-    int is_ray_facing_left;
-    float distance;
-    int h;
-    int v;
+    get_horz(p, data, ray_angle);
+    get_vert(p, data, ray_angle);
+    if (p->h)
+        p->distance_h = get_distance(data->pl.px, data->pl.py, p->hit_h_x, p->hit_h_y);
+    else
+        p->distance_h = INT_MAX;
+    if (p->v)
+        p->distance_v = get_distance(data->pl.px, data->pl.py, p->hit_v_x, p->hit_v_y);
+    else
+        p->distance_v = INT_MAX;
+    if (p->distance_v < p->distance_h)
+    {
+        p->hit_x = p->hit_v_x;
+        p->hit_y = p->hit_v_y;
+        p->distance = p->distance_v;
+    }
+    else
+    {
+        p->hit_x = p->hit_h_x;
+        p->hit_y = p->hit_h_y;
+        p->distance = p->distance_h;
+    }
+    // mlx_draw_line(data->line, data->pl.px, data->pl.py, p->hit_x, p->hit_y, 0xFF000FF);
+	// mlx_image_to_window(data->mlx, data->line, 0, 0);
+}
 
-    float hit_x;
-    float hit_y;
-
-    float x_step_h;
-    float y_step_h;
-
-    float x_intercept_h;
-    float y_intercept_h;
-
-
-    float hit_h_x;
-    float hit_h_y;
-
-    h = 0;
-    v = 0;
+void    raycasting(t_data *data)
+{   
+    t_engine p;
+    float ray_angle = data->pl.pa - (FOV / 2);
     int i = 0;
-    mlx_delete_image(data->mlx, data->line);
-	data->line = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-
-    is_ray_facing_down = ray_angle > 0 && ray_angle < M_PI;
-    is_ray_facing_up = !is_ray_facing_down;
-    is_ray_facing_right = ray_angle < 0.5 * M_PI || ray_angle > 1.5 * M_PI;
-    is_ray_facing_left = !is_ray_facing_right;
-    //--------------------------------------- horizontal ---------------------------------------
-    //find the y intercept of the first horizontal line
-    y_intercept_h = floor(data->pl.py / TILE_SIZE) * TILE_SIZE;
-    if (is_ray_facing_down)
-        y_intercept_h += TILE_SIZE;
-    // find the x intercept of the first horizontal line
-    x_intercept_h = data->pl.px + (y_intercept_h - data->pl.py) / tan(ray_angle);
-    
-    y_step_h = TILE_SIZE;
-    y_step_h *= is_ray_facing_up ? -1 : 1;
-
-    x_step_h = TILE_SIZE / tan(ray_angle);
-    x_step_h *= (is_ray_facing_left && x_step_h > 0) ? -1 : 1;
-    x_step_h *= (is_ray_facing_right && x_step_h < 0) ? -1 : 1;
-
-    hit_h_x = x_intercept_h;
-    hit_h_y = y_intercept_h;
-
-    if(is_ray_facing_up)
-        hit_h_y--;
-    while (hit_h_x >= 0 && hit_h_x <= WIDTH && hit_h_y >= 0 && hit_h_y <= HEIGHT)
+    mlx_delete_image(data->mlx, data->wall);
+    // mlx_delete_image(data->mlx, data->line);
+	// data->line = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+	data->wall = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+    while (i < NUM_RAYS)
     {
-        if (hasWallAt(data, hit_h_x, hit_h_y))
-        {
-            h = 1;
-            break;
-        }
-        else
-        {
-            hit_h_x += x_step_h;
-            hit_h_y += y_step_h;
-        }
+        do_it(data, ray_angle, &p);
+        p.angle = (FOV / 2) - i * (FOV / NUM_RAYS);
+        p.dist = p.distance * cos(p.angle);
+        p.wall_hight = TILE_SIZE * WIDTH / p.dist;
+        p.wall_top = (HEIGHT / 2) - (p.wall_hight / 2);
+        p.wall_top = p.wall_top < 0 ? 0 : p.wall_top;
+        p.wall_bottom = (HEIGHT / 2) + (p.wall_hight / 2);
+        p.wall_bottom = p.wall_bottom > HEIGHT ? HEIGHT : p.wall_bottom;
+        for (int j = p.wall_top; j < p.wall_bottom; j++)
+            mlx_put_pixel(data->wall, i, j, 0xFFFFFFFF);
+        mlx_image_to_window(data->mlx, data->wall, 0, 0);
+        ray_angle += FOV / NUM_RAYS;
+        i++;
     }
-    //--------------------------------------- vertical ---------------------------------------
-
-    float x_step_v;
-    float y_step_v;
-
-    float x_intercept_v;
-    float y_intercept_v;
-
-    float hit_v_x;
-    float hit_v_y;
     
-    // find the y intercept of the first horizontal line
-    x_intercept_v = floor(data->pl.px / TILE_SIZE) * TILE_SIZE;
-    if (is_ray_facing_right)
-        x_intercept_v += TILE_SIZE;
-    // find the x intercept of the first horizontal line
-    y_intercept_v = data->pl.py + (x_intercept_v - data->pl.px) * tan(ray_angle);
-    
-    x_step_v = TILE_SIZE;
-    x_step_v *= is_ray_facing_left ? -1 : 1;
-
-    y_step_v = TILE_SIZE * tan(ray_angle);
-    y_step_v *= (is_ray_facing_up && y_step_v > 0) ? -1 : 1;
-    y_step_v *= (is_ray_facing_down && y_step_v < 0) ? -1 : 1;
-
-    hit_v_x = x_intercept_v;
-    hit_v_y = y_intercept_v;
-
-    if(is_ray_facing_left)
-        hit_v_x--;
-    while (hit_v_x >= 0 && hit_v_x <= WIDTH && hit_v_y >= 0 && hit_v_y <= HEIGHT)
-    {
-        if (hasWallAt(data, hit_v_x, hit_v_y))
-        {
-            v = 1;
-            break;
-        }
-        else
-        {
-            hit_v_x += x_step_v;
-            hit_v_y += y_step_v;
-        }
-    }
-    float distance_h = h ? get_distance(data->pl.px, data->pl.py, hit_h_x, hit_h_y) : INT_MAX;
-    float distance_v = v ? get_distance(data->pl.px, data->pl.py, hit_v_x, hit_v_y) : INT_MAX;
-    hit_x = distance_h < distance_v ? hit_h_x : hit_v_x;
-    hit_y = distance_h < distance_v ? hit_h_y : hit_v_y;
-    distance = distance_h < distance_v ? distance_h : distance_v;
-
-    mlx_draw_line(data->line, data->pl.px, data->pl.py, hit_x, hit_y, 0xFF000FF);
-	mlx_image_to_window(data->mlx, data->line, 0, 0);
 }

@@ -6,7 +6,7 @@
 /*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 00:34:22 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/12 20:12:05 by ybenlafk         ###   ########.fr       */
+/*   Updated: 2023/06/13 12:37:59 by ybenlafk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,37 +90,47 @@ typedef struct s_player
 
 typedef struct s_engine
 {
-	float			ray_angle_step;
-	float			start_angle;
-	float			ray_angle;
-	float			ray_x;
-	float			ray_y;
-	float			delta_dist_x;
-	float			delta_dist_y;
-	float			side_dist_x;
-	float			side_dist_y;
-	float			perp_dist;
-	int				map_x;
-	int				map_y;
-	float			step_x;
-	float			step_y;
-	int				hit;
-	float			line_end_x;
-	float			line_end_y;
-	int				wall_height;
-	int				wall_top;
-	int				wall_bottom;
-	int				i;
-	float			player_x;
-	float			player_y;
-	float			player_angle;
-	int			offset_x;
-	int			offset_y;
-	mlx_texture_t	*img;
-	unsigned int	*tex;
-	int				stat;
-	int				dis_from_top;
-	int				color;
+	int is_ray_facing_down;
+    int is_ray_facing_up;
+    int is_ray_facing_right;
+    int is_ray_facing_left;
+    float distance;
+    int h;
+    int v;
+
+    float hit_x;
+    float hit_y;
+
+    float x_step_h;
+    float y_step_h;
+
+    float x_intercept_h;
+    float y_intercept_h;
+
+
+	float x_step_v;
+    float y_step_v;
+
+    float x_intercept_v;
+    float y_intercept_v;
+
+    float hit_v_x;
+    float hit_v_y;
+
+    float hit_h_x;
+    float hit_h_y;
+
+	float distance_h;
+	float distance_v;
+
+	float wall_hight;
+	
+	float angle;
+	float dist ;
+	
+	float wall_top;
+	float wall_bottom;
+
 }					t_engine;
 
 typedef struct s_world
@@ -144,6 +154,7 @@ typedef struct s_data
 	void			*mlx;
 	mlx_image_t		*img;
 	mlx_image_t		*line;
+	mlx_image_t		*wall;
 	t_engine		eng;
 	t_player		pl;
 	t_world			world;

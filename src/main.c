@@ -6,7 +6,7 @@
 /*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 17:16:54 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/12 16:32:37 by ybenlafk         ###   ########.fr       */
+/*   Updated: 2023/06/13 13:21:13 by ybenlafk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,8 +199,9 @@ int	main(int ac, char **av)
 	calculate_map_dimensions(&data);
 	data.img = mlx_new_image(data.mlx, WIDTH, HEIGHT);
 	data.line = mlx_new_image(data.mlx, WIDTH, HEIGHT);
+	data.wall = mlx_new_image(data.mlx, WIDTH, HEIGHT);
 	data.pl.img = mlx_new_image(data.mlx, 32, 32);
-	draw_map(&data);
+	// draw_map(&data);
 	draw_player(&data);
 	mlx_image_to_window(data.mlx, data.img, 0, 0);
 	mlx_image_to_window(data.mlx, data.line, 0, 0);

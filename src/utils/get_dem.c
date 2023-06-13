@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_dem.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 13:48:53 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/03 16:53:57 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/06/13 09:54:21 by ybenlafk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,21 @@
 
 void	calculate_map_dimensions(t_data *data)
 {
-	char	**map;
-	int		i;
-	int		j;
-	int		max;
-	int		count;
+	int i;
+	int j;
 
-	map = data->world.map;
 	i = 0;
-	j = 0;
-	max = 0;
-	count = 0;
-	while (map[i])
+	data->world.map_width = 0;
+	data->world.map_height = 0;
+	while (data->world.map[i])
 	{
 		j = 0;
-		count = 0;
-		while (map[i][j] && map[i][j] != '\n')
+		while (data->world.map[i][j])
 		{
-			count++;
 			j++;
+			data->world.map_width++;
 		}
-		if (count > max)
-			max = count;
 		i++;
+		data->world.map_height++;
 	}
-	data->world.map_width = max;
-	data->world.map_height = i;
 }
