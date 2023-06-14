@@ -6,7 +6,7 @@
 /*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 00:34:22 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/13 18:41:05 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/06/14 14:49:09 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,8 @@ typedef struct s_world
 	char			*ea;
 	char			*floor_c;
 	char			*ceil_c;
+	int				floor;
+	int				ceil;
 	int				map_width;
 	int				map_height;
 	mlx_image_t		*walls;
@@ -167,6 +169,8 @@ float 	get_distance(float x1, float y1, float x2, float y2);
 float   normalizeAngle(float angle);
 void    init_ray_dirs(t_engine *p, float ray_angle);
 void    get_offset(t_engine *p, t_data *data);
+//skybox
+void	skybox(t_data *data);
 
 // parsing
 void				init_parse(t_data *data, char *map_fi);

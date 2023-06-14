@@ -1,10 +1,10 @@
-NO  ./assets/textures/new/greystone.png
-WE  ./assets/textures/BROWN96_64.png
-EA  ./assets/textures/STARG2_64.png
-SO  ./assets/textures/MARBLE3_64.png
+NO  /Users/aarbaoui/Documents/1337/cub3d/assets/textures/new/greystone.png
+WE  /Users/aarbaoui/Documents/1337/cub3d/assets/textures/BROWN96_64.png
+EA  /Users/aarbaoui/Documents/1337/cub3d/assets/textures/STARG2_64.png
+SO  /Users/aarbaoui/Documents/1337/cub3d/assets/textures/MARBLE3_64.png
 
-F 58, 58, 59
-C 147, 148, 255
+F 58, 58,                   59
+C 147, 148,        ,255
 
 111111111111111
 100000100000001
@@ -23,7 +23,7 @@ C 147, 148, 255
 111111111111111001000000100000010010001
               1000000001000000000010001
               1000000000000000000000001
-              1000000E00000000000010001
+              100000000N000000000010001
               1000000000000000000010001
               1001000000000000010010001
               1000100000000000100010001

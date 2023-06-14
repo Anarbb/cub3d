@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_util_1.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 16:51:33 by ybenlafk          #+#    #+#             */
-/*   Updated: 2023/06/13 16:54:16 by ybenlafk         ###   ########.fr       */
+/*   Updated: 2023/06/14 13:09:19 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void    get_horz(t_engine *p, t_data *data, float ray_angle)
         if (hasWallAt(data, p->hit_h_x, p->hit_h_y))
         {
             p->h = 1;
+            if (p->is_ray_facing_up)
+                p->hit_h_y += 0.01;
             break;
         }
         else
@@ -89,6 +91,8 @@ void    get_vert(t_engine *p, t_data *data, float ray_angle)
         if (hasWallAt(data, p->hit_v_x, p->hit_v_y))
         {
             p->v = 1;
+            if(p->is_ray_facing_left)
+                p->hit_v_x += 0.01;
             break;
         }
         else

@@ -1,6 +1,6 @@
 NAME	:= cub3D
 CC		:= gcc
-CFLAGS	:= -Iinclude  -Wall -Wextra -Werror -Ofast
+CFLAGS	:= -Iinclude  -Wall -Wextra -Werror -g
 HEADERS	:= include/cub3d.h
 LIBFT	:= libs/libft.a
 MLX		:= libs/libmlx.a
@@ -23,6 +23,7 @@ SRCS := src/main.c \
 		src/utils/get_rgba.c \
 		src/utils/mlx_draw_line.c \
 		src/utils/get_dem.c \
+		src/engine/skybox.c \
 
 
 OBJS := $(SRCS:.c=.o)

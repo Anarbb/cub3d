@@ -6,7 +6,7 @@
 /*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 17:16:54 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/13 18:43:20 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/06/14 14:57:37 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -262,6 +262,8 @@ int	main(int ac, char **av)
 	data->EA = mlx_load_png(data->world.ea);
 	if (!data->NO || !data->SO || !data->WE || !data->EA || check_texture(data))
 		exit(1);
+	data->world.skybox = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+	skybox(data);
 	fill_png(data->tex_NO, data->NO);
 	fill_png(data->tex_EA, data->EA);
 	fill_png(data->tex_SO, data->SO);
@@ -271,6 +273,7 @@ int	main(int ac, char **av)
 	data->wall = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	// draw_map(data);
 	init_player(data);
+	mlx_image_to_window(data->mlx, data->world.skybox, 0, 0);
 	mlx_image_to_window(data->mlx, data->img, 0, 0);
 	mlx_image_to_window(data->mlx, data->line, 0, 0);
 	mlx_loop_hook(data->mlx, ft_hook, data);
