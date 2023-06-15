@@ -6,7 +6,7 @@
 /*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 12:55:38 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/14 15:05:21 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/06/15 13:35:12 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	get_colors(t_data *data)
 		255);
 	data->world.ceil = get_rgba(ft_atoi(cc[0]), ft_atoi(cc[1]), ft_atoi(cc[2]),
 		255);
+	free_all(fc);
+	free_all(cc);
 }
 
 void skybox(t_data *data)

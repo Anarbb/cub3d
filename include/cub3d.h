@@ -6,7 +6,7 @@
 /*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 00:34:22 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/14 14:49:09 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/06/15 14:15:11 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define TILE_SIZE 32
 # define PLAYER_SIZE 5
 # define SENSE 0.3
-
+# define RENDER_DISTANCE 1000
 
 typedef struct s_var
 {
@@ -155,6 +155,8 @@ typedef struct s_data
 	unsigned int	tex_SO[10000000];
 	unsigned int	tex_WE[10000000];
 	unsigned int	tex_EA[10000000];
+
+	t_engine		*ray;
 }					t_data;
 
 // raycasting
@@ -171,6 +173,8 @@ void    init_ray_dirs(t_engine *p, float ray_angle);
 void    get_offset(t_engine *p, t_data *data);
 //skybox
 void	skybox(t_data *data);
+//minimap
+void	minimap(t_data *data);
 
 // parsing
 void				init_parse(t_data *data, char *map_fi);

@@ -6,7 +6,7 @@
 /*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 17:16:54 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/14 14:57:37 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/06/15 16:54:04 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void mlx_draw_line(mlx_image_t *image, int x1, int y1, int x2, int y2, int color
 	err = (dx > dy ? dx : -dy) / 2;
 	if (x1 == x2 && y1 == y2)
 		mlx_put_pixel(image, x1, y1, color);
-	// if any is negative, dont draw
 	if (x1 < 0 || y1 < 0 || x2 < 0 || y2 < 0)
 		return ;
 	while (1)
@@ -78,27 +77,12 @@ void mlx_draw_line(mlx_image_t *image, int x1, int y1, int x2, int y2, int color
 	}
 }
 
-void	draw_square(t_var *p, t_data *data)
-{
-	p->x = p->j * 32;
-	p->y = p->i * 32;
-	p->l = 0;
-	while (p->l < 31)
-	{
-		p->k = 0;
-		while (p->k < 31)
-		{
-			mlx_put_pixel(data->img, p->x + p->k, p->y + p->l, 0xFFFFFF);
-			p->k++;
-		}
-		p->l++;
-	}
-}
+
 
 void init_start_angle(t_var p, t_data *data)
 {
-	data->pl.px = p.j * 32;
-	data->pl.py = p.i * 32;
+	data->pl.px = p.j * 32 + 16;
+	data->pl.py = p.i * 32 + 16;
 	if (data->world.map[p.i][p.j] == 'W')
 		data->pl.pa = 3 * M_PI / 2;
 	else if (data->world.map[p.i][p.j] == 'E')
@@ -129,23 +113,7 @@ void	init_player(t_data *data)
 		p.i++;
 	}
 }
-void	draw_map(t_data *data)
-{
-	t_var p;
 
-	p.i = 0;
-	while (data->world.map[p.i])
-	{
-		p.j = 0;
-		while (data->world.map[p.i][p.j])
-		{
-			if (data->world.map[p.i][p.j] == '1')
-				draw_square(&p, data);
-			p.j++;
-		}
-		p.i++;
-	}
-}
 
 void check_collision(t_data *data, t_var *p)
 {
@@ -180,6 +148,7 @@ void	ft_hook(void	*param)
 {
 	t_data *data;
 	t_var p;
+	
 	data = (t_data *)param;
 	p.new_px = data->pl.px;
 	p.new_py = data->pl.py;
@@ -210,7 +179,9 @@ void	ft_hook(void	*param)
 		p.new_py += data->pl.pdx;
 	}
 	check_collision(data, &p);
+	minimap(data);
 	raycasting(data);
+    mlx_image_to_window(data->mlx, data->img, 0, 0);
 }
 
 void	fill_png(unsigned int *list, mlx_texture_t *png)
@@ -244,6 +215,20 @@ int	check_texture(t_data *data)
 	return (0);
 }
 
+void	fill_textures(t_data *data)
+{
+	data->NO = mlx_load_png(data->world.no);
+	data->SO = mlx_load_png(data->world.so);
+	data->WE = mlx_load_png(data->world.we);
+	data->EA = mlx_load_png(data->world.ea);
+	fill_png(data->tex_NO, data->NO);
+	fill_png(data->tex_EA, data->EA);
+	fill_png(data->tex_SO, data->SO);
+	fill_png(data->tex_WE, data->WE);
+	if (!data->NO || !data->SO || !data->WE || !data->EA || check_texture(data))
+		exit(1);
+}
+
 int	main(int ac, char **av)
 {
 	t_data *data;
@@ -256,26 +241,14 @@ int	main(int ac, char **av)
 	data->mlx = mlx_init(WIDTH, HEIGHT, "Cub3D", false);
 	init_parse(data, av[1]);
 	calculate_map_dimensions(data);
-	data->NO = mlx_load_png(data->world.no);
-	data->SO = mlx_load_png(data->world.so);
-	data->WE = mlx_load_png(data->world.we);
-	data->EA = mlx_load_png(data->world.ea);
-	if (!data->NO || !data->SO || !data->WE || !data->EA || check_texture(data))
-		exit(1);
+	fill_textures(data);
 	data->world.skybox = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-	skybox(data);
-	fill_png(data->tex_NO, data->NO);
-	fill_png(data->tex_EA, data->EA);
-	fill_png(data->tex_SO, data->SO);
-	fill_png(data->tex_WE, data->WE);
-	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-	data->line = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	data->wall = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-	// draw_map(data);
+	data->img = mlx_new_image(data->mlx, 300, 300);
+	skybox(data);
 	init_player(data);
 	mlx_image_to_window(data->mlx, data->world.skybox, 0, 0);
-	mlx_image_to_window(data->mlx, data->img, 0, 0);
-	mlx_image_to_window(data->mlx, data->line, 0, 0);
+	mlx_image_to_window(data->mlx, data->wall, 0, 0);
 	mlx_loop_hook(data->mlx, ft_hook, data);
 	mlx_loop(data->mlx);
 	return (0);
