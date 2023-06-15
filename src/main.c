@@ -6,7 +6,7 @@
 /*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 17:16:54 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/15 16:54:04 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/06/15 17:50:25 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,10 +245,17 @@ int	main(int ac, char **av)
 	data->world.skybox = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	data->wall = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	data->img = mlx_new_image(data->mlx, 300, 300);
+	data->crosshair_tex = mlx_load_png("assets/textures/crosshair.png");
+	data->crosshair = mlx_texture_to_image(data->mlx, data->crosshair_tex);
+	data->weapon_tex = mlx_load_png("assets/textures/weapon/pistol/pistol1.png");
+	data->weapon = mlx_texture_to_image(data->mlx, data->weapon_tex);
+	mlx_resize_image(data->crosshair, 16, 16);
 	skybox(data);
 	init_player(data);
 	mlx_image_to_window(data->mlx, data->world.skybox, 0, 0);
 	mlx_image_to_window(data->mlx, data->wall, 0, 0);
+	mlx_image_to_window(data->mlx, data->crosshair, WIDTH / 2 - 16, HEIGHT / 2 - 16);
+	mlx_image_to_window(data->mlx, data->weapon, (WIDTH / 2) - (data->weapon->width / 2) , (HEIGHT)  - data->weapon->height);
 	mlx_loop_hook(data->mlx, ft_hook, data);
 	mlx_loop(data->mlx);
 	return (0);

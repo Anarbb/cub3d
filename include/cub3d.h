@@ -6,7 +6,7 @@
 /*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 00:34:22 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/15 14:15:11 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/06/15 17:26:07 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,8 @@ typedef struct s_data
 	mlx_image_t		*img;
 	mlx_image_t		*line;
 	mlx_image_t		*wall;
+	mlx_image_t		*crosshair;
+	mlx_image_t		*weapon;
 	t_engine		eng;
 	t_player		pl;
 	t_world			world;
@@ -150,6 +152,8 @@ typedef struct s_data
 	mlx_texture_t	*SO;
 	mlx_texture_t	*WE;
 	mlx_texture_t	*EA;
+	mlx_texture_t	*crosshair_tex;
+	mlx_texture_t	*weapon_tex;
 
 	unsigned int	tex_NO[10000000];
 	unsigned int	tex_SO[10000000];
@@ -157,6 +161,7 @@ typedef struct s_data
 	unsigned int	tex_EA[10000000];
 
 	t_engine		*ray;
+	
 }					t_data;
 
 // raycasting
