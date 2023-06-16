@@ -1,7 +1,7 @@
-NO  /Users/aarbaoui/Documents/1337/cub3d/assets/textures/new/greystone.png
-WE  /Users/aarbaoui/Documents/1337/cub3d/assets/textures/BROWN96_64.png
-EA  /Users/aarbaoui/Documents/1337/cub3d/assets/textures/STARG2_64.png
-SO  /Users/aarbaoui/Documents/1337/cub3d/assets/textures/MARBLE3_64.png
+NO  ./assets/textures/new/greystone.png
+WE  ./assets/textures/new/mossy.png
+EA  ./assets/textures/new/mossy.png
+SO  ./assets/textures/new/greystone.png
 
 F 58, 58,                   59
 C 147, 148,        ,255

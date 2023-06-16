@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 00:34:22 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/15 17:26:07 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/06/16 12:39:25 by ybenlafk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,24 @@
 # define SENSE 0.3
 # define RENDER_DISTANCE 1000
 
+
+typedef struct s_line
+{
+	int				x0;
+	int				x1;
+	int				x2;
+	int				x3;
+
+	int				y0;
+	int				y1;
+	int				y2;
+	int				y3;
+	
+	int				size;
+}					t_line;
+
+
+
 typedef struct s_var
 {
 	int				i;
@@ -38,6 +56,13 @@ typedef struct s_var
 	int				x;
 	int				y;
 	int				k;
+
+	int				dx;
+	int				dy;
+	int				sx;
+	int				sy;
+	int				err;
+	int				e2;
 
 	int is_ray_facing_down;
     int is_ray_facing_up;
@@ -110,7 +135,7 @@ typedef struct s_engine
 	
 	int offset_x;
 	int offset_y;
-	int dist_from_top;
+	int dist_p;
 	mlx_texture_t	*img;
 	unsigned int	*tex;
 	int				color;
@@ -171,20 +196,25 @@ void    get_horz(t_engine *p, t_data *data, float ray_angle);
 void    vert_claculs(t_engine *p, t_data *data, float ray_angle);
 void    get_vert(t_engine *p, t_data *data, float ray_angle);
 void    do_it(t_data *data, float ray_angle, t_engine *p);
-int 	hasWallAt(t_data *data, float x, float y);
-float 	get_distance(float x1, float y1, float x2, float y2);
-float   normalizeAngle(float angle);
+int 	has_wall_at(t_data *data, float x, float y);
+float 	get_dis(float x1, float y1, float x2, float y2);
+float   normalize_angle(float angle);
 void    init_ray_dirs(t_engine *p, float ray_angle);
 void    get_offset(t_engine *p, t_data *data);
 //skybox
 void	skybox(t_data *data);
 //minimap
 void	minimap(t_data *data);
-
+void	mlx_draw_line(mlx_image_t *image, t_line t, int color);
 // parsing
 void				init_parse(t_data *data, char *map_fi);
+void				ft_error(char *str);
+int					is_empty(char c);
+int					is_valid(t_var *p, char **map);
+int					is_surrounded(char **map);
+void				parse_params_2(t_data *data, char *line, int *is);
 // utils
-void mlx_draw_line(mlx_image_t *image, int x1, int y1, int x2, int y2, int color);
+
 int					is_map(char *line);
 int					get_step(float x);
 int					get_rgba(int r, int g, int b, int a);
@@ -193,4 +223,16 @@ void				free_all(char **s);
 int					ft_strcmp(char *s1, char *s2);
 void				calculate_map_dimensions(t_data *data);
 void				ft_error(char *str);
+void				fill_png(unsigned int *list, mlx_texture_t *png);
+int					check_texture(t_data *data);
+void				fill_textures(t_data *data);
+void				init_start_angle(t_var p, t_data *data);
+void				init_player(t_data *data);
+
+void				change_angle(t_data *data);
+void				init_cells(t_var *p);
+void				check_collision(t_data *data, t_var *p);
+void				hook_norm(t_data *data, t_var *p);
+void				ft_hook(void *param);
+
 #endif

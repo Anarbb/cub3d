@@ -4,19 +4,22 @@ CFLAGS	:= -Iinclude  -Wall -Wextra -Werror -Ofast
 HEADERS	:= include/cub3d.h
 LIBFT	:= libs/libft.a
 MLX		:= libs/libmlx.a
-LIBS	:= -lglfw -L/Volumes/L/.brew/opt/glfw/lib 
+# LIBS	:= -lglfw -L/Volumes/L/.brew/opt/glfw/lib 
 # LIBS	:= -ldl -lglfw -pthread -lm -lglfw
-# LIBS	:= -lglfw -L/Users/ybenlafk/.brew/opt/glfw/lib/
+LIBS	:= -lglfw -L/Users/ybenlafk/.brew/opt/glfw/lib/
 SRCS := src/main.c \
 		src/parsing/parse.c \
+		src/parsing/parse_util.c \
 		src/engine/raycasting.c \
 		src/utils/is_map.c \
-		src/utils/get_map_size.c \
 		src/engine/raycast_util.c \
 		src/engine/raycast_util_1.c \
 		src/utils/ft_realloc.c \
 		src/utils/gnl/get_next_line_utils.c \
 		src/utils/free_all.c \
+		src/utils/textures.c \
+		src/utils/hooks.c \
+		src/utils/init_player.c \
 		src/utils/ft_strcmp.c \
 		src/utils/gnl/get_next_line.c \
 		src/utils/get_step.c \
