@@ -6,7 +6,7 @@
 /*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 13:48:53 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/13 09:54:21 by ybenlafk         ###   ########.fr       */
+/*   Updated: 2023/06/16 12:06:23 by ybenlafk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	calculate_map_dimensions(t_data *data)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	data->world.map_width = 0;

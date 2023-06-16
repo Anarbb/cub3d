@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 13:08:22 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/15 17:03:45 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/06/16 12:26:56 by ybenlafk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ void	draw_outline(t_data *data)
 
 void draw_ray(t_data* data)
 {
+	t_line p;
     float ray_end_x;
     float ray_end_y;
     float ray_start_x;
@@ -98,7 +99,11 @@ void draw_ray(t_data* data)
     ray_start_y = 150 + 4;
     ray_end_x = ray_start_x + cos(data->pl.pa) * 25;
 	ray_end_y = ray_start_y + sin(data->pl.pa) * 25;
-    mlx_draw_line(data->img, ray_start_x, ray_start_y, ray_end_x, ray_end_y, 0xFFFFFFFF);
+	p.x0 = ray_start_x;
+	p.y0 = ray_start_y;
+	p.x1 = ray_end_x;
+	p.y1 = ray_end_y;
+    mlx_draw_line(data->img, p, 0xFFFFFFFF);
 }
 
 

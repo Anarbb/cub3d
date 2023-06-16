@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 15:36:08 by ybenlafk          #+#    #+#             */
-/*   Updated: 2023/06/03 16:54:06 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/06/16 12:06:03 by ybenlafk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	free_all(char **s)
 {
-	int i;
+	int	i;
 
 	if (!s)
 		return ;
