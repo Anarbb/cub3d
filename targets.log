@@ -1,0 +1,732 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 3.81
+# Copyright (C) 2006  Free Software Foundation, Inc.
+# This is free software; see the source for copying conditions.
+# There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.
+
+# This program built for i386-apple-darwin11.3.0
+ 
+
+# Make data base, printed on Sat Jun 17 14:28:51 2023
+
+# Variables
+
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# automatic
+?F = $(notdir $?)
+# environment
+VSCODE_CRASH_REPORTER_PROCESS_TYPE = extensionHost
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# automatic
+@F = $(notdir $@)
+# makefile
+ 
+CURDIR := /Users/aarbaoui/Documents/1337/cub3d
+# makefile
+SHELL = /bin/sh
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en-us","osLocale":"en","availableLanguages":{},"_languagePackSupport":true}
+# makefile (from `Makefile', line 6)
+MLX := libs/libmlx.a
+# environment
+_ = /usr/bin/make
+# makefile (from `Makefile', line 3)
+CFLAGS := -Iinclude  -Wall -Wextra -Werror -g
+# makefile (from `Makefile', line 1)
+MAKEFILE_LIST :=  Makefile
+# makefile (from `Makefile', line 12)
+SRCS := src/main.c src/parsing/parse.c src/parsing/parse_util.c src/engine/raycasting.c src/utils/is_map.c src/engine/raycast_util.c src/engine/raycast_util_1.c src/utils/ft_realloc.c src/utils/gnl/get_next_line_utils.c src/utils/free_all.c src/utils/textures.c src/utils/hooks.c src/utils/init_player.c src/utils/ft_strcmp.c src/utils/gnl/get_next_line.c src/utils/get_step.c src/utils/get_rgba.c src/utils/mlx_draw_line.c src/utils/get_dem.c src/engine/skybox.c src/engine/minimap.c 
+# makefile (from `Makefile', line 35)
+OBJS := src/main.o src/parsing/parse.o src/parsing/parse_util.o src/engine/raycasting.o src/utils/is_map.o src/engine/raycast_util.o src/engine/raycast_util_1.o src/utils/ft_realloc.o src/utils/gnl/get_next_line_utils.o src/utils/free_all.o src/utils/textures.o src/utils/hooks.o src/utils/init_player.o src/utils/ft_strcmp.o src/utils/gnl/get_next_line.o src/utils/get_step.o src/utils/get_rgba.o src/utils/mlx_draw_line.o src/utils/get_dem.o src/engine/skybox.o src/engine/minimap.o
+# environment
+P9K_SSH = 0
+# environment
+VSCODE_CWD = /
+# environment
+PATH = /Volumes/L/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/Library/Apple/usr/bin
+# environment
+LSCOLORS = Gxfxcxdxbxegedabagacad
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# default
+.FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
+# environment
+LS_COLORS = di=1;36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43
+# environment
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.C8pQ2YFvRV/Listeners
+# automatic
+%F = $(notdir $%)
+# environment
+HOMEBREW_TEMP = /tmp/aarbaoui/Homebrew/Temp
+# environment
+PWD = /Users/aarbaoui/Documents/1337/cub3d
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = undefined
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+HOME = /Users/aarbaoui
+# default
+MAKEFILEPATH := /Applications/Xcode.app/Contents/Developer/Makefiles
+# environment
+VSCODE_CODE_CACHE_PATH = /Users/aarbaoui/Library/Application Support/Code/CachedData/4cb974a7aed77a74c7813bdccd99ee0d04901215
+# environment
+LOGNAME = aarbaoui
+# makefile (from `Makefile', line 4)
+HEADERS := include/cub3d.h
+# environment
+ZSH = /Users/aarbaoui/.oh-my-zsh
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# environment
+XPC_FLAGS = 0x0
+# default
+MAKE = $(MAKE_COMMAND)
+# default
+MAKECMDGOALS := all
+# environment
+HOMEBREW_CACHE = /tmp/aarbaoui/Homebrew/Caches
+# environment
+SHLVL = 1
+# makefile (from `Makefile', line 5)
+LIBFT := libs/libft.a
+# makefile (from `Makefile', line 2)
+CC := gcc
+# default
+MAKE_VERSION := 3.81
+# environment
+USER = aarbaoui
+# makefile
+.DEFAULT_GOAL := all
+# makefile (from `Makefile', line 1)
+NAME := cub3D
+# environment
+LESS = -R
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# default
+MAKE_COMMAND := /Applications/Xcode.app/Contents/Developer/usr/bin/make
+# default
+.VARIABLES := 
+# environment
+TMPDIR = /var/folders/zz/zyxvpxvq6csfxvn_n000chqh00345w/T/
+# automatic
+*F = $(notdir $*)
+# environment
+VSCODE_IPC_HOOK = /Users/aarbaoui/Library/Application Support/Code/1.79-main.sock
+# environment
+MallocNanoZone = 0
+# makefile
+MAKEFLAGS = Rrqp
+# environment
+MFLAGS = -Rrqp
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+XPC_SERVICE_NAME = com.microsoft.VSCode.3008
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# environment
+VSCODE_L10N_BUNDLE_LOCATION = 
+# automatic
++F = $(notdir $+)
+# environment
+__CF_USER_TEXT_ENCODING = 0x190BC:0x0:0x0
+# default
+MAKEFILES := 
+# automatic
+<F = $(notdir $<)
+# environment
+PAGER = less
+# environment
+LC_ALL = C
+# makefile (from `Makefile', line 10)
+LIBS := -lglfw -L/Users/aarbaoui/goinfre/.brew/opt/glfw/lib/
+# automatic
+^F = $(notdir $^)
+# default
+SUFFIXES := 
+# default
+.INCLUDE_DIRS = /usr/local/include
+# environment
+MAKELEVEL := 0
+# environment
+LANG = C
+# environment
+VSCODE_PID = 79462
+# variable set hash-table stats:
+# Load=74/1024=7%, Rehash=0, Collisions=5/103=5%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# include (device 16777228, inode 38177): 3 files, no impossibilities so far.
+# . (device 16777228, inode 38051): 14 files, no impossibilities.
+# src/utils (device 16777228, inode 38371): 25 files, no impossibilities so far.
+# src/engine (device 16777228, inode 38364): 11 files, no impossibilities so far.
+# src (device 16777228, inode 38363): 4 files, no impossibilities so far.
+# src/utils/gnl (device 16777228, inode 38379): 5 files, no impossibilities so far.
+# src/parsing (device 16777228, inode 38369): 5 files, no impossibilities so far.
+
+# 67 files, no impossibilities in 7 directories.
+
+# Implicit Rules
+
+%.o: %.c include/cub3d.h
+#  commands to execute (from `Makefile', line 44):
+	$(CC) $(CFLAGS) -c $< -o $@
+	
+
+# 1 implicit rules, 0 (0.0%) terminal.
+
+# Files
+
+src/engine/raycast_util.o: src/engine/raycast_util.c include/cub3d.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `src/engine/raycast_util'
+#  Last modified 2023-06-17 14:28:43
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 44):
+	$(CC) $(CFLAGS) -c $< -o $@
+	
+
+# Not a target:
+src/engine/skybox.c:
+#  Implicit rule search has been done.
+#  Last modified 2023-06-17 14:28:14
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+src/utils/init_player.c:
+#  Implicit rule search has been done.
+#  Last modified 2023-06-17 13:23:12
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+all: cub3D
+#  Phony target (prerequisite of .PHONY).
+#  Command-line target.
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+src/utils/ft_strcmp.o: src/utils/ft_strcmp.c include/cub3d.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `src/utils/ft_strcmp'
+#  Last modified 2023-06-17 14:28:44
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 44):
+	$(CC) $(CFLAGS) -c $< -o $@
+	
+
+src/utils/ft_realloc.o: src/utils/ft_realloc.c include/cub3d.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `src/utils/ft_realloc'
+#  Last modified 2023-06-17 14:28:43
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 44):
+	$(CC) $(CFLAGS) -c $< -o $@
+	
+
+# Not a target:
+src/utils/gnl/get_next_line_utils.c:
+#  Implicit rule search has been done.
+#  Last modified 2023-06-13 17:43:52
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+.PHONY: all clean fclean re
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+src/utils/gnl/get_next_line.o: src/utils/gnl/get_next_line.c include/cub3d.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `src/utils/gnl/get_next_line'
+#  Last modified 2023-06-17 14:28:44
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 44):
+	$(CC) $(CFLAGS) -c $< -o $@
+	
+
+ 
+src/parsing/parse_util.o: src/parsing/parse_util.c include/cub3d.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `src/parsing/parse_util'
+#  Last modified 2023-06-17 14:28:43
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 44):
+	$(CC) $(CFLAGS) -c $< -o $@
+	
+
+src/main.o: src/main.c include/cub3d.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `src/main'
+#  Last modified 2023-06-17 14:28:43
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 44):
+	$(CC) $(CFLAGS) -c $< -o $@
+	
+
+src/utils/hooks.o: src/utils/hooks.c include/cub3d.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `src/utils/hooks'
+#  Last modified 2023-06-17 14:28:44
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 44):
+	$(CC) $(CFLAGS) -c $< -o $@
+	
+
+# Not a target:
+src/utils/free_all.c:
+#  Implicit rule search has been done.
+#  Last modified 2023-06-17 13:23:12
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+cub3D: src/main.o src/parsing/parse.o src/parsing/parse_util.o src/engine/raycasting.o src/utils/is_map.o src/engine/raycast_util.o src/engine/raycast_util_1.o src/utils/ft_realloc.o src/utils/gnl/get_next_line_utils.o src/utils/free_all.o src/utils/textures.o src/utils/hooks.o src/utils/init_player.o src/utils/ft_strcmp.o src/utils/gnl/get_next_line.o src/utils/get_step.o src/utils/get_rgba.o src/utils/mlx_draw_line.o src/utils/get_dem.o src/engine/skybox.o src/engine/minimap.o
+#  Implicit rule search has not been done.
+#  Last modified 2023-06-17 14:28:44
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 41):
+	$(CC) $(CFLAGS) $(OBJS) $(MLX) ${LIBFT} -o $(NAME) $(LIBS)
+	
+
+src/engine/raycast_util_1.o: src/engine/raycast_util_1.c include/cub3d.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `src/engine/raycast_util_1'
+#  Last modified 2023-06-17 14:28:43
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 44):
+	$(CC) $(CFLAGS) -c $< -o $@
+	
+
+src/utils/is_map.o: src/utils/is_map.c include/cub3d.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `src/utils/is_map'
+#  Last modified 2023-06-17 14:28:43
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 44):
+	$(CC) $(CFLAGS) -c $< -o $@
+	
+
+# Not a target:
+src/utils/get_dem.c:
+#  Implicit rule search has been done.
+#  Last modified 2023-06-17 13:23:12
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+src/utils/mlx_draw_line.o: src/utils/mlx_draw_line.c include/cub3d.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `src/utils/mlx_draw_line'
+#  Last modified 2023-06-17 14:28:44
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 44):
+	$(CC) $(CFLAGS) -c $< -o $@
+	
+
+# Not a target:
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+include/cub3d.h:
+#  Implicit rule search has been done.
+#  Last modified 2023-06-17 13:23:12
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2023-06-17 14:28:39
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+src/engine/raycasting.c:
+#  Implicit rule search has been done.
+#  Last modified 2023-06-17 13:23:12
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+src/engine/raycast_util.c:
+#  Implicit rule search has been done.
+#  Last modified 2023-06-17 13:23:12
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+src/parsing/parse.o: src/parsing/parse.c include/cub3d.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `src/parsing/parse'
+#  Last modified 2023-06-17 14:28:43
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 44):
+	$(CC) $(CFLAGS) -c $< -o $@
+	
+
+src/engine/minimap.o: src/engine/minimap.c include/cub3d.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `src/engine/minimap'
+#  Last modified 2023-06-17 14:28:44
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 44):
+	$(CC) $(CFLAGS) -c $< -o $@
+	
+
+# Not a target:
+src/utils/ft_strcmp.c:
+#  Implicit rule search has been done.
+#  Last modified 2023-06-17 13:23:12
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+src/utils/ft_realloc.c:
+#  Implicit rule search has been done.
+#  Last modified 2023-06-15 14:03:42
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+src/utils/get_rgba.o: src/utils/get_rgba.c include/cub3d.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `src/utils/get_rgba'
+#  Last modified 2023-06-17 14:28:44
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 44):
+	$(CC) $(CFLAGS) -c $< -o $@
+	
+
+fclean: clean
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 50):
+	rm -f $(NAME)
+	
+
+# Not a target:
+src/utils/gnl/get_next_line.c:
+#  Implicit rule search has been done.
+#  Last modified 2023-06-13 17:43:52
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+src/parsing/parse_util.c:
+#  Implicit rule search has been done.
+#  Last modified 2023-06-17 14:22:01
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+src/utils/textures.o: src/utils/textures.c include/cub3d.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `src/utils/textures'
+#  Last modified 2023-06-17 14:28:43
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 44):
+	$(CC) $(CFLAGS) -c $< -o $@
+	
+
+# Not a target:
+src/main.c:
+#  Implicit rule search has been done.
+#  Last modified 2023-06-17 14:20:36
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+src/utils/hooks.c:
+#  Implicit rule search has been done.
+#  Last modified 2023-06-17 13:23:12
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+src/utils/get_step.o: src/utils/get_step.c include/cub3d.h
+#  Implicit rule search has been done.
+ 
+#  Implicit/static pattern stem: `src/utils/get_step'
+#  Last modified 2023-06-17 14:28:44
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 44):
+	$(CC) $(CFLAGS) -c $< -o $@
+	
+
+# Not a target:
+src/engine/raycast_util_1.c:
+#  Implicit rule search has been done.
+#  Last modified 2023-06-17 13:23:12
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+src/utils/is_map.c:
+#  Implicit rule search has been done.
+#  Last modified 2023-06-13 17:43:52
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/utils/mlx_draw_line.c:
+#  Implicit rule search has been done.
+#  Last modified 2023-06-17 13:23:12
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+re: fclean all
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+clean:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 47):
+	rm -f $(OBJS)
+	
+
+src/engine/skybox.o: src/engine/skybox.c include/cub3d.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `src/engine/skybox'
+#  Last modified 2023-06-17 14:28:44
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 44):
+	$(CC) $(CFLAGS) -c $< -o $@
+	
+
+# Not a target:
+src/parsing/parse.c:
+#  Implicit rule search has been done.
+#  Last modified 2023-06-17 13:23:12
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+src/utils/init_player.o: src/utils/init_player.c include/cub3d.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `src/utils/init_player'
+#  Last modified 2023-06-17 14:28:44
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 44):
+	$(CC) $(CFLAGS) -c $< -o $@
+	
+
+# Not a target:
+src/engine/minimap.c:
+#  Implicit rule search has been done.
+#  Last modified 2023-06-17 14:20:36
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+src/utils/gnl/get_next_line_utils.o: src/utils/gnl/get_next_line_utils.c include/cub3d.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `src/utils/gnl/get_next_line_utils'
+#  Last modified 2023-06-17 14:28:43
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 44):
+	$(CC) $(CFLAGS) -c $< -o $@
+	
+
+# Not a target:
+src/utils/get_rgba.c:
+#  Implicit rule search has been done.
+#  Last modified 2023-06-13 17:43:52
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+src/utils/free_all.o: src/utils/free_all.c include/cub3d.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `src/utils/free_all'
+#  Last modified 2023-06-17 14:28:43
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 44):
+	$(CC) $(CFLAGS) -c $< -o $@
+	
+
+# Not a target:
+src/utils/textures.c:
+#  Implicit rule search has been done.
+#  Last modified 2023-06-17 13:23:12
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+src/utils/get_dem.o: src/utils/get_dem.c include/cub3d.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `src/utils/get_dem'
+#  Last modified 2023-06-17 14:28:44
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 44):
+	$(CC) $(CFLAGS) -c $< -o $@
+	
+
+# Not a target:
+src/utils/get_step.c:
+#  Implicit rule search has been done.
+#  Last modified 2023-06-13 17:43:52
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+src/engine/raycasting.o: src/engine/raycasting.c include/cub3d.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `src/engine/raycasting'
+#  Last modified 2023-06-17 14:28:43
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 44):
+	$(CC) $(CFLAGS) -c $< -o $@
+	
+
+# files hash-table stats:
+# Load=52/1024=5%, Rehash=0, Collisions=0/199=0%
+# VPATH Search Paths
+
+# No `vpath' search paths.
+
+# No general (`VPATH' variable) search path.
+
+# # of strings in strcache: 1
+# # of strcache buffers: 1
+# strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
+# strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
+
+# Finished Make data base on Sat Jun 17 14:28:51 2023
+
+ 

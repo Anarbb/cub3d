@@ -1,0 +1,5 @@
+make --dry-run --keep-going --print-directory
+make: Entering directory `/Users/aarbaoui/Documents/1337/cub3d'
+make: Nothing to be done for `all'.
+make: Leaving directory `/Users/aarbaoui/Documents/1337/cub3d'
+ 

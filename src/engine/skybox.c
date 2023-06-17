@@ -3,14 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   skybox.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 12:55:38 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/17 10:22:57 by ybenlafk         ###   ########.fr       */
+/*   Updated: 2023/06/17 15:07:08 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int	is_string_int(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int parse_colors(char **fc, char **cc)
+{
+    int count;
+
+	count = 0;
+    if (fc == NULL || cc == NULL)
+        return (0);
+    while (fc[count]) 
+	{
+        if (!is_string_int(ft_strtrim(fc[count], " "))
+			|| (ft_atoi(fc[count]) > 255 || ft_atoi(fc[count]) < 0))
+            return (0);
+        count++;
+    }
+    count = 0;
+    while (cc[count]) {
+        if (!is_string_int(ft_strtrim(cc[count], " "))
+			|| (ft_atoi(cc[count]) > 255 || ft_atoi(cc[count]) < 0))
+            return (0);
+        count++;
+    }
+    return (1);
+}
 
 void	get_colors(t_data *data)
 {
@@ -19,6 +57,8 @@ void	get_colors(t_data *data)
 
 	fc = ft_split(data->world.floor_c, ',');
 	cc = ft_split(data->world.ceil_c, ',');
+	if (!parse_colors(fc, cc))
+		ft_error("Error\nInvalid colors\n");
 	data->world.floor = get_rgba(ft_atoi(fc[0]), ft_atoi(fc[1]), ft_atoi(fc[2]),
 			255);
 	data->world.ceil = get_rgba(ft_atoi(cc[0]), ft_atoi(cc[1]), ft_atoi(cc[2]),
