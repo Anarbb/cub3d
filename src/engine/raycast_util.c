@@ -6,7 +6,7 @@
 /*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 16:51:33 by ybenlafk          #+#    #+#             */
-/*   Updated: 2023/06/16 11:58:46 by ybenlafk         ###   ########.fr       */
+/*   Updated: 2023/06/17 10:33:51 by ybenlafk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	init_ray_dirs(t_engine *p, float ray_angle)
 		p->is_ray_facing_up = 1;
 	else
 		p->is_ray_facing_up = 0;
-	if (ray_angle < 0.5 * M_PI || ray_angle > 1.5 * M_PI)
+	if (ray_angle < M_PI / 2 || ray_angle > (3 * M_PI) / 2)
 		p->is_ray_facing_right = 1;
 	else
 		p->is_ray_facing_right = 0;
@@ -63,23 +63,23 @@ void	get_offset(t_engine *p, t_data *data)
 {
 	if (p->state == 1 && p->is_ray_facing_right)
 	{
-		p->img = data->SO;
-		p->tex = data->tex_SO;
+		p->img = data->so;
+		p->tex = data->tex_so;
 	}
 	else if (p->state == 1 && p->is_ray_facing_left)
 	{
-		p->img = data->NO;
-		p->tex = data->tex_NO;
+		p->img = data->no;
+		p->tex = data->tex_no;
 	}
 	else if (p->state == 2 && p->is_ray_facing_up)
 	{
-		p->img = data->WE;
-		p->tex = data->tex_WE;
+		p->img = data->we;
+		p->tex = data->tex_we;
 	}
 	else if (p->state == 2 && p->is_ray_facing_down)
 	{
-		p->img = data->EA;
-		p->tex = data->tex_EA;
+		p->img = data->ea;
+		p->tex = data->tex_ea;
 	}
 	if (p->state == 1)
 		p->offset_x = (int)p->hit_y % p->img->width;
