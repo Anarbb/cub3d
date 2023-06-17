@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 00:34:22 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/17 10:31:21 by ybenlafk         ###   ########.fr       */
+/*   Updated: 2023/06/17 18:36:47 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,5 +225,6 @@ void	init_cells(t_var *p);
 void	check_collision(t_data *data, t_var *p);
 void	hook_norm(t_data *data, t_var *p);
 void	ft_hook(void *param);
-
+int		get_color(t_data *data, int x, int y);
+void	update_map(t_data *data);
 #endif

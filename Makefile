@@ -30,6 +30,8 @@ SRCS := src/main.c \
 		src/utils/get_dem.c \
 		src/engine/skybox.c \
 		src/engine/minimap.c \
+		src/utils/get_color.c \
+		src/utils/update_map.c \
 
 
 OBJS := $(SRCS:.c=.o)

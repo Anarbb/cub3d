@@ -6,7 +6,7 @@
 /*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 13:08:22 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/17 15:14:02 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/06/17 18:37:08 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,6 @@ void	draw_map(t_data *data)
 		}
 		p.i++;
 	}
-}
-
-int	get_color(t_data *data, int x, int y)
-{
-	x = (int)(x / 32);
-	y = (int)(y / 32);
-	if (x < 0 || x >= data->world.map_width || y < 0
-		|| y >= data->world.map_height)
-		return (0x00000069);
-	if (data->world.map[y][x] == '1')
-		return (0xFF000069);
-	return (0x00000069);
 }
 
 void	draw_outline(t_data *data)
@@ -116,10 +104,7 @@ void	minimap(t_data *data)
 	y = 0;
 	x_grid = 0;
 	y_grid = 0;
-	ft_memset(data->img->pixels, 0, data->img->width * data->img->height
-		* sizeof(int32_t));
-	mlx_delete_image(data->mlx, data->img);
-	data->img = mlx_new_image(data->mlx, 300, 300);
+	update_map(data);
 	while (y < 300)
 	{
 		x = 0;
