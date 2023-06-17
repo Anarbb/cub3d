@@ -6,7 +6,7 @@
 /*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 12:55:38 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/17 15:07:08 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/06/17 15:13:30 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,13 @@ int parse_colors(char **fc, char **cc)
         return (0);
     while (fc[count]) 
 	{
-        if (!is_string_int(ft_strtrim(fc[count], " "))
-			|| (ft_atoi(fc[count]) > 255 || ft_atoi(fc[count]) < 0))
+        if (!is_string_int(ft_strtrim(fc[count], " ")))
             return (0);
         count++;
     }
     count = 0;
     while (cc[count]) {
-        if (!is_string_int(ft_strtrim(cc[count], " "))
-			|| (ft_atoi(cc[count]) > 255 || ft_atoi(cc[count]) < 0))
+        if (!is_string_int(ft_strtrim(cc[count], " ")))
             return (0);
         count++;
     }
