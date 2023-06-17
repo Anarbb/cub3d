@@ -6,7 +6,7 @@
 /*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 12:02:20 by ybenlafk          #+#    #+#             */
-/*   Updated: 2023/06/17 12:42:28 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/06/17 13:19:51 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,13 @@ void	parse_params_2(t_data *data, char *line, int *is)
 	if (ft_strncmp(line, "F ", 2) == 0)
 	{
 		data->world.floor_c = ft_strtrim(line + 2, " \t\n");
-		if (*data->world.floor_c == '\0')
+		if (*data->world.floor_c == '\0' || ft_atoi(data->world.floor_c) < 0
+			|| ft_atoi(data->world.floor_c) > 255)
 			ft_error("Error\n");
 		(*is)++;
 	}
-	else if (ft_strncmp(line, "C ", 2) == 0)
+	else if (ft_strncmp(line, "C ", 2) == 0 || ft_atoi(data->world.ceil_c) < 0
+		|| ft_atoi(data->world.ceil_c) > 255)
 	{
 		data->world.ceil_c = ft_strtrim(line + 2, " \t\n");
 		if (*data->world.ceil_c == '\0')
