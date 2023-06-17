@@ -6,7 +6,7 @@
 /*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 12:55:38 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/17 15:13:30 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/06/17 17:39:03 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,26 +26,27 @@ int	is_string_int(char *str)
 	return (1);
 }
 
-int parse_colors(char **fc, char **cc)
+int	parse_colors(char **fc, char **cc)
 {
-    int count;
+	int	count;
 
 	count = 0;
-    if (fc == NULL || cc == NULL)
-        return (0);
-    while (fc[count]) 
+	if (fc == NULL || cc == NULL)
+		return (0);
+	while (fc[count])
 	{
-        if (!is_string_int(ft_strtrim(fc[count], " ")))
-            return (0);
-        count++;
-    }
-    count = 0;
-    while (cc[count]) {
-        if (!is_string_int(ft_strtrim(cc[count], " ")))
-            return (0);
-        count++;
-    }
-    return (1);
+		if (!is_string_int(ft_strtrim(fc[count], " ")))
+			return (0);
+		count++;
+	}
+	count = 0;
+	while (cc[count])
+	{
+		if (!is_string_int(ft_strtrim(cc[count], " ")))
+			return (0);
+		count++;
+	}
+	return (1);
 }
 
 void	get_colors(t_data *data)
