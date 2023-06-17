@@ -6,7 +6,7 @@
 /*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 11:39:18 by ybenlafk          #+#    #+#             */
-/*   Updated: 2023/06/17 11:04:18 by ybenlafk         ###   ########.fr       */
+/*   Updated: 2023/06/17 15:34:00 by ybenlafk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	raycasting(t_data *data)
 		j = p.wall_top;
 		while (j < p.wall_bottom)
 		{
-			p.dist_p = j + (p.wall_hight / 2) - (HEIGHT / 2);
+			p.dist_p = j - ((HEIGHT / 2) - (p.wall_hight / 2));
 			p.offset_y = p.dist_p * ((float)p.img->height / p.wall_hight);
 			p.color = p.tex[p.img->width * p.offset_y + p.offset_x];
 			mlx_put_pixel(data->wall, i, j, p.color);

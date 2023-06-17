@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 17:16:54 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/17 15:16:16 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/06/17 15:22:08 by ybenlafk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,7 @@ int	main(int ac, char **av)
 	t_data	*data;
 
 	data = ft_calloc(1, sizeof(t_data));
-	if (!data)
-		return (0);
-	if (ac != 2)
+	if (ac != 2 || !data)
 		return (0);
 	data->mlx = mlx_init(WIDTH, HEIGHT, "Cub3D", false);
 	if (!data->mlx)
