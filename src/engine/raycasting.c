@@ -6,7 +6,7 @@
 /*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 11:39:18 by ybenlafk          #+#    #+#             */
-/*   Updated: 2023/06/16 12:01:10 by ybenlafk         ###   ########.fr       */
+/*   Updated: 2023/06/17 11:04:18 by ybenlafk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ void	get_wall_hight(t_engine *p, int i)
 	p->angle = (FOV / 2) - i * (FOV / NUM_RAYS);
 	p->dist = p->distance * cos(p->angle);
 	p->wall_hight = TILE_SIZE * WIDTH / p->dist;
-	p->wall_top = (HEIGHT / 2) - (p->wall_hight / 3);
+	p->wall_top = (HEIGHT / 2) - (p->wall_hight / 2);
 	if (p->wall_top < 0)
 		p->wall_top = 0;
-	p->wall_bottom = (HEIGHT / 2) + (p->wall_hight / 3);
+	p->wall_bottom = (HEIGHT / 2) + (p->wall_hight / 2);
 	if (p->wall_bottom > HEIGHT)
 		p->wall_bottom = HEIGHT;
 }
