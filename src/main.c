@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 17:16:54 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/16 12:41:35 by ybenlafk         ###   ########.fr       */
+/*   Updated: 2023/06/17 12:43:32 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		return (0);
 	data->mlx = mlx_init(WIDTH, HEIGHT, "Cub3D", false);
+	if (!data->mlx)
+		exit(1);
 	init_parse(data, av[1]);
 	calculate_map_dimensions(data);
 	fill_textures(data);

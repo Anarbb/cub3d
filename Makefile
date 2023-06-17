@@ -2,11 +2,11 @@ NAME	:= cub3D
 CC		:= gcc
 CFLAGS	:= -Iinclude  -Wall -Wextra -Werror -Ofast
 HEADERS	:= include/cub3d.h
-LIBFT	:= libs/libft.a
-MLX		:= libs/libmlx.a
+LIBFT	:= libs/linux/libft.a
+MLX		:= libs/linux/libmlx.a
 # LIBS	:= -lglfw -L/Volumes/L/.brew/opt/glfw/lib 
-# LIBS	:= -ldl -lglfw -pthread -lm -lglfw
-LIBS	:= -lglfw -L/Users/ybenlafk/.brew/opt/glfw/lib/
+LIBS	:= -ldl -lglfw -pthread -lm -lglfw
+# LIBS	:= -lglfw -L/Users/ybenlafk/.brew/opt/glfw/lib/
 SRCS := src/main.c \
 		src/parsing/parse.c \
 		src/parsing/parse_util.c \

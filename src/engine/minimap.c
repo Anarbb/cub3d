@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 13:08:22 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/16 12:26:56 by ybenlafk         ###   ########.fr       */
+/*   Updated: 2023/06/17 12:41:44 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "cub3d.h"
+#include "cub3d.h"
 
 void	draw_square(mlx_image_t *img, int x, int y, int color)
 {
-	int i;
-	int j;
-	int size;
+	int	i;
+	int	j;
+	int	size;
 
 	size = 8;
 	i = 0;
@@ -32,10 +32,9 @@ void	draw_square(mlx_image_t *img, int x, int y, int color)
 	}
 }
 
-
 void	draw_map(t_data *data)
 {
-	t_var p;
+	t_var	p;
 
 	p.i = 0;
 	while (data->world.map[p.i])
@@ -59,8 +58,8 @@ int	get_color(t_data *data, int x, int y)
 {
 	x = (int)(x / 32);
 	y = (int)(y / 32);
-
-	if (x < 0 || x >= data->world.map_width || y < 0 || y >= data->world.map_height)
+	if (x < 0 || x >= data->world.map_width || y < 0
+		|| y >= data->world.map_height)
 		return (0x00000069);
 	if (data->world.map[y][x] == '1')
 		return (0xFF000069);
@@ -69,8 +68,8 @@ int	get_color(t_data *data, int x, int y)
 
 void	draw_outline(t_data *data)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	x = 0;
 	y = 0;
@@ -87,38 +86,37 @@ void	draw_outline(t_data *data)
 	}
 }
 
-void draw_ray(t_data* data)
+void	draw_ray(t_data *data)
 {
-	t_line p;
-    float ray_end_x;
-    float ray_end_y;
-    float ray_start_x;
-    float ray_start_y;;
-
-    ray_start_x = 150 + 4;
-    ray_start_y = 150 + 4;
-    ray_end_x = ray_start_x + cos(data->pl.pa) * 25;
+	t_line	p;
+	float	ray_end_x;
+	float	ray_end_y;
+	float	ray_start_x;
+	float	ray_start_y;
+	ray_start_x = 150 + 4;
+	ray_start_y = 150 + 4;
+	ray_end_x = ray_start_x + cos(data->pl.pa) * 25;
 	ray_end_y = ray_start_y + sin(data->pl.pa) * 25;
 	p.x0 = ray_start_x;
 	p.y0 = ray_start_y;
 	p.x1 = ray_end_x;
 	p.y1 = ray_end_y;
-    mlx_draw_line(data->img, p, 0xFFFFFFFF);
+	mlx_draw_line(data->img, p, 0xFFFFFFFF);
 }
-
 
 void	minimap(t_data *data)
 {
-	int x;
-	int y;
-	int x_grid;
-	int y_grid;
-	
+	int	x;
+	int	y;
+	int	x_grid;
+	int	y_grid;
+
 	x = 0;
 	y = 0;
 	x_grid = 0;
 	y_grid = 0;
-	ft_memset(data->img->pixels, 0, data->img->width * data->img->height * sizeof(int32_t));
+	ft_memset(data->img->pixels, 0, data->img->width * data->img->height
+		* sizeof(int32_t));
 	mlx_delete_image(data->mlx, data->img);
 	data->img = mlx_new_image(data->mlx, 300, 300);
 	while (y < 300)

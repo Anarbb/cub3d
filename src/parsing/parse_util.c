@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_util.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 12:02:20 by ybenlafk          #+#    #+#             */
-/*   Updated: 2023/06/16 12:05:22 by ybenlafk         ###   ########.fr       */
+/*   Updated: 2023/06/17 12:42:28 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,6 @@ int	is_surrounded(char **map)
 
 void	parse_params_2(t_data *data, char *line, int *is)
 {
-	char	*tmp;
-
-	tmp = NULL;
 	if (ft_strncmp(line, "F ", 2) == 0)
 	{
 		data->world.floor_c = ft_strtrim(line + 2, " \t\n");
