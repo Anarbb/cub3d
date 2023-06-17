@@ -6,7 +6,7 @@
 /*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 13:08:22 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/17 12:41:44 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/06/17 15:14:02 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void	draw_ray(t_data *data)
 	float	ray_end_y;
 	float	ray_start_x;
 	float	ray_start_y;
+
 	ray_start_x = 150 + 4;
 	ray_start_y = 150 + 4;
 	ray_end_x = ray_start_x + cos(data->pl.pa) * 25;

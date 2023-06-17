@@ -6,7 +6,7 @@
 /*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 17:16:54 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/17 14:52:44 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/06/17 15:16:16 by aarbaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	imgs_init(t_data *data)
 	data->img = mlx_new_image(data->mlx, 300, 300);
 	data->crosshair = mlx_texture_to_image(data->mlx, data->crosshair_tex);
 	data->weapon = mlx_texture_to_image(data->mlx, data->weapon_tex);
+	mlx_resize_image(data->crosshair, 16, 16);
 }
 
 int	main(int ac, char **av)
@@ -37,7 +38,6 @@ int	main(int ac, char **av)
 	calculate_map_dimensions(data);
 	fill_textures(data);
 	imgs_init(data);
-	mlx_resize_image(data->crosshair, 16, 16);
 	skybox(data);
 	init_player(data);
 	mlx_image_to_window(data->mlx, data->world.skybox, 0, 0);
