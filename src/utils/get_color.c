@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_color.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 18:33:35 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/17 18:33:43 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/06/18 11:02:53 by ybenlafk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	get_color(t_data *data, int x, int y)
 {
-	x = (int)(x / 32);
-	y = (int)(y / 32);
+	x = (int)(x / 64);
+	y = (int)(y / 64);
 	if (x < 0 || x >= data->world.map_width || y < 0
 		|| y >= data->world.map_height)
 		return (0x00000069);

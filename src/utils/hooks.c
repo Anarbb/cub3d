@@ -6,7 +6,7 @@
 /*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 12:34:05 by ybenlafk          #+#    #+#             */
-/*   Updated: 2023/06/16 12:38:21 by ybenlafk         ###   ########.fr       */
+/*   Updated: 2023/06/18 11:00:08 by ybenlafk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ void	change_angle(t_data *data)
 
 void	init_cells(t_var *p)
 {
-	p->cell_x = (int)(p->new_px / 32);
-	p->cell_y = (int)(p->new_py / 32);
-	p->left_cell_x = (int)((p->new_px - PLAYER_SIZE / 2) / 32);
-	p->right_cell_x = (int)((p->new_px + PLAYER_SIZE / 2) / 32);
+	p->cell_x = (int)(p->new_px / 64);
+	p->cell_y = (int)(p->new_py / 64);
+	p->left_cell_x = (int)((p->new_px - PLAYER_SIZE / 2) / 64);
+	p->right_cell_x = (int)((p->new_px + PLAYER_SIZE / 2) / 64);
 }
 
 void	check_collision(t_data *data, t_var *p)
@@ -63,7 +63,7 @@ void	check_collision(t_data *data, t_var *p)
 		p->new_py = data->pl.py;
 		return ;
 	}
-	if (p->right_cell_x < WIDTH / 32
+	if (p->right_cell_x < WIDTH / 64
 		&& data->world.map[p->cell_y][p->right_cell_x] == '1')
 	{
 		p->new_px = data->pl.px;
@@ -105,14 +105,14 @@ void	ft_hook(void *param)
 	if (mlx_is_key_down(data->mlx, MLX_KEY_UP)
 		|| mlx_is_key_down(data->mlx, MLX_KEY_W))
 	{
-		p.new_px += data->pl.pdx / 2;
-		p.new_py += data->pl.pdy / 2;
+		p.new_px += data->pl.pdx;
+		p.new_py += data->pl.pdy;
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_DOWN)
 		|| mlx_is_key_down(data->mlx, MLX_KEY_S))
 	{
-		p.new_px -= data->pl.pdx / 2;
-		p.new_py -= data->pl.pdy / 2;
+		p.new_px -= data->pl.pdx;
+		p.new_py -= data->pl.pdy;
 	}
 	hook_norm(data, &p);
 	check_collision(data, &p);

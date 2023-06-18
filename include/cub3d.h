@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 00:34:22 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/17 18:36:47 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/06/18 10:52:42 by ybenlafk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define HEIGHT 1080
 # define FOV 1.0472
 # define NUM_RAYS WIDTH
-# define TILE_SIZE 32
+# define TILE_SIZE 64
 # define PLAYER_SIZE 5
 # define SENSE 0.3
 # define RENDER_DISTANCE 1000
