@@ -6,7 +6,7 @@
 /*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 17:16:54 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/18 12:50:24 by ybenlafk         ###   ########.fr       */
+/*   Updated: 2023/06/18 17:12:48 by ybenlafk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,13 @@ void	imgs_init(t_data *data)
 	mlx_resize_image(data->crosshair, 16, 16);
 }
 
-void	f()
-{
-	system("leaks cub3D");
-}
-
 int	main(int ac, char **av)
 {
-	// atexit(f);
 	t_data	*data;
 
 	data = ft_calloc(1, sizeof(t_data));
 	if (!data || ac != 2)
-		return (1);
+		return (free(data), 1);
 	data->mlx = mlx_init(WIDTH, HEIGHT, "Cub3D", false);
 	if (!data->mlx)
 		return (1);

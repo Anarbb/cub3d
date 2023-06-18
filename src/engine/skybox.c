@@ -6,7 +6,7 @@
 /*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 12:55:38 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/18 12:59:50 by ybenlafk         ###   ########.fr       */
+/*   Updated: 2023/06/18 17:12:06 by ybenlafk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	is_string_int(char *str)
 
 int	parse_colors(char **fc, char **cc)
 {
-	int	count;
-	char *tmp;
+	int		count;
+	char	*tmp;
 
 	tmp = NULL;
 	count = 0;
