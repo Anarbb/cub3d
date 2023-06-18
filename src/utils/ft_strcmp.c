@@ -6,7 +6,7 @@
 /*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 15:37:39 by ybenlafk          #+#    #+#             */
-/*   Updated: 2023/06/16 12:06:13 by ybenlafk         ###   ########.fr       */
+/*   Updated: 2023/06/18 12:33:30 by ybenlafk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	ft_strcmp(char *s1, char *s2)
 {
 	int	i;
 
+	if (!s1 || !s2)
+		return (1);
 	i = 0;
 	while (s1[i] && s2[i] && s1[i] == s2[i])
 		i++;

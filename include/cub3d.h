@@ -6,7 +6,7 @@
 /*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 00:34:22 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/18 10:52:42 by ybenlafk         ###   ########.fr       */
+/*   Updated: 2023/06/18 12:59:15 by ybenlafk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,7 +206,7 @@ int		is_valid(t_var *p, char **map);
 int		is_surrounded(char **map);
 void	parse_params_2(t_data *data, char *line, int *is);
 // utils
-
+int		list_len(char **s);
 int		is_map(char *line);
 int		get_step(float x);
 int		get_rgba(int r, int g, int b, int a);

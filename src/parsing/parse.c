@@ -6,7 +6,7 @@
 /*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 17:24:39 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/16 12:04:13 by ybenlafk         ###   ########.fr       */
+/*   Updated: 2023/06/18 12:35:13 by ybenlafk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	fill_data(t_data *data, char *line, int fd, int is)
 		line = get_next_line(fd);
 	}
 	if (is != 6)
-		exit(0);
+		ft_error("Error\n");
 	while (line && *line)
 	{
 		if (!is_map(line))
@@ -105,6 +105,8 @@ void	fill_data(t_data *data, char *line, int fd, int is)
 			data->world.map[i] = ft_strdup(line);
 			data->world.map = ft_realloc(data->world.map,
 					(++i + 1) * sizeof(char *));
+			if (!data->world.map)
+				ft_error("Error\n");
 		}
 		free(line);
 		line = get_next_line(fd);

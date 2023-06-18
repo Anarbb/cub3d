@@ -6,7 +6,7 @@
 /*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 12:32:20 by ybenlafk          #+#    #+#             */
-/*   Updated: 2023/06/17 10:33:24 by ybenlafk         ###   ########.fr       */
+/*   Updated: 2023/06/18 12:32:20 by ybenlafk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	fill_png(unsigned int *list, mlx_texture_t *png)
 
 	i = 0;
 	j = 0;
+	if (!png || !png->pixels || !list)
+		return ;
 	while (png->pixels[i] && j < png->width * png->height)
 	{
 		list[j] = get_rgba(png->pixels[i], png->pixels[i + 1], png->pixels[i

@@ -6,7 +6,7 @@
 /*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 17:16:54 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/17 18:47:17 by ybenlafk         ###   ########.fr       */
+/*   Updated: 2023/06/18 12:50:24 by ybenlafk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,20 @@ void	imgs_init(t_data *data)
 	data->img = mlx_new_image(data->mlx, 300, 300);
 	data->crosshair = mlx_texture_to_image(data->mlx, data->crosshair_tex);
 	data->weapon = mlx_texture_to_image(data->mlx, data->weapon_tex);
+	if (!data->world.skybox || !data->wall || !data->img || !data->crosshair
+		|| !data->weapon)
+		ft_error("Error\n: mlx_new_image");
 	mlx_resize_image(data->crosshair, 16, 16);
+}
+
+void	f()
+{
+	system("leaks cub3D");
 }
 
 int	main(int ac, char **av)
 {
+	// atexit(f);
 	t_data	*data;
 
 	data = ft_calloc(1, sizeof(t_data));

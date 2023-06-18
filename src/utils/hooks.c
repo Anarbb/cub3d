@@ -6,7 +6,7 @@
 /*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 12:34:05 by ybenlafk          #+#    #+#             */
-/*   Updated: 2023/06/18 11:00:08 by ybenlafk         ###   ########.fr       */
+/*   Updated: 2023/06/18 11:27:20 by ybenlafk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ void	change_angle(t_data *data)
 	mlx_set_mouse_pos(data->mlx, 500, 500);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
 	{
-		data->pl.pa -= 0.04;
+		data->pl.pa -= 0.06;
 		data->pl.pdx = cos(data->pl.pa) * 5;
 		data->pl.pdy = sin(data->pl.pa) * 5;
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
 	{
-		data->pl.pa += 0.04;
+		data->pl.pa += 0.06;
 		data->pl.pdx = cos(data->pl.pa) * 5;
 		data->pl.pdy = sin(data->pl.pa) * 5;
 	}
@@ -105,14 +105,14 @@ void	ft_hook(void *param)
 	if (mlx_is_key_down(data->mlx, MLX_KEY_UP)
 		|| mlx_is_key_down(data->mlx, MLX_KEY_W))
 	{
-		p.new_px += data->pl.pdx;
-		p.new_py += data->pl.pdy;
+		p.new_px += data->pl.pdx * 1.5;
+		p.new_py += data->pl.pdy * 1.5;
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_DOWN)
 		|| mlx_is_key_down(data->mlx, MLX_KEY_S))
 	{
-		p.new_px -= data->pl.pdx;
-		p.new_py -= data->pl.pdy;
+		p.new_px -= data->pl.pdx * 1.5;
+		p.new_py -= data->pl.pdy * 1.5;
 	}
 	hook_norm(data, &p);
 	check_collision(data, &p);

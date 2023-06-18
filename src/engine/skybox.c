@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   skybox.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 12:55:38 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/17 17:39:03 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/06/18 12:59:50 by ybenlafk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,27 @@ int	is_string_int(char *str)
 int	parse_colors(char **fc, char **cc)
 {
 	int	count;
+	char *tmp;
 
+	tmp = NULL;
 	count = 0;
 	if (fc == NULL || cc == NULL)
 		return (0);
 	while (fc[count])
 	{
-		if (!is_string_int(ft_strtrim(fc[count], " ")))
-			return (0);
+		tmp = ft_strtrim(fc[count], " ");
+		if (!is_string_int(tmp))
+			return (free(tmp), 0);
+		free(tmp);
 		count++;
 	}
 	count = 0;
 	while (cc[count])
 	{
-		if (!is_string_int(ft_strtrim(cc[count], " ")))
-			return (0);
+		tmp = ft_strtrim(cc[count], " ");
+		if (!is_string_int(tmp))
+			return (free(tmp), 0);
+		free(tmp);
 		count++;
 	}
 	return (1);
@@ -56,6 +62,8 @@ void	get_colors(t_data *data)
 
 	fc = ft_split(data->world.floor_c, ',');
 	cc = ft_split(data->world.ceil_c, ',');
+	if (list_len(fc) != 3 || list_len(cc) != 3)
+		ft_error("Error\nInvalid colors\n");
 	if (!parse_colors(fc, cc))
 		ft_error("Error\nInvalid colors\n");
 	data->world.floor = get_rgba(ft_atoi(fc[0]), ft_atoi(fc[1]), ft_atoi(fc[2]),
