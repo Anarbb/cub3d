@@ -6,7 +6,7 @@
 /*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 16:51:33 by ybenlafk          #+#    #+#             */
-/*   Updated: 2023/06/18 14:29:33 by ybenlafk         ###   ########.fr       */
+/*   Updated: 2023/06/19 09:44:26 by ybenlafk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	horz_caluls(t_engine *p, t_data *data, float ray_angle)
 	p->x_step_h = TILE_SIZE / tan(ray_angle);
 	p->hit_h_x = p->x_intercept_h;
 	p->hit_h_y = p->y_intercept_h;
-	if (p->is_ray_facing_up)
+	if (!p->is_ray_facing_down)
 	{
 		p->y_step_h *= -1;
 		p->x_step_h *= -1;
@@ -49,7 +49,7 @@ void	get_horz(t_engine *p, t_data *data, float ray_angle)
 		if (has_wall_at(data, p->hit_h_x, p->hit_h_y))
 		{
 			p->h = 1;
-			if (p->is_ray_facing_up)
+			if (!p->is_ray_facing_down)
 				p->hit_h_y += 0.01;
 			break ;
 		}
@@ -71,7 +71,7 @@ void	vert_claculs(t_engine *p, t_data *data, float ray_angle)
 	p->y_step_v = TILE_SIZE * tan(ray_angle);
 	p->hit_v_x = p->x_intercept_v;
 	p->hit_v_y = p->y_intercept_v;
-	if (p->is_ray_facing_left)
+	if (!p->is_ray_facing_right)
 	{
 		p->y_step_v *= -1;
 		p->x_step_v *= -1;
@@ -87,7 +87,7 @@ void	get_vert(t_engine *p, t_data *data, float ray_angle)
 		if (has_wall_at(data, p->hit_v_x, p->hit_v_y))
 		{
 			p->v = 1;
-			if (p->is_ray_facing_left)
+			if (!p->is_ray_facing_right)
 				p->hit_v_x += 0.01;
 			break ;
 		}

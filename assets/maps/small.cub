@@ -1,16 +1,22 @@
-NO  ./assets/textures/STARG3_64.png
-WE  ./assets/textures/STARG3_64.png
-EA  ./assets/textures/STARG2_64.png
-SO  ./assets/textures/STARG2_64.png
+NO /Users/aarbaoui/Documents/1337/cub3d/assets/textures/NO.png
+SO /Users/aarbaoui/Documents/1337/cub3d/assets/textures/NO.png
+WE /Users/aarbaoui/Documents/1337/cub3d/assets/textures/NO.png
+EA /Users/aarbaoui/Documents/1337/cub3d/assets/textures/NO.png
 
-F 124,142,12
-C 12,220,125
+F 117, 142, 79
+C 135, 245, 255
 
-1111111111
-1000000001
-1111000001
-1000000001
-1000001001
-1000001001
-100000W001
-1111111111
+111111111111
+100000000111
+111100000111
+100000000111
+100011101111
+100000100111
+100000100111
+100000000001
+100000000001
+100000000001
+100001110111
+100001000001
+100001000S01
+111111111111

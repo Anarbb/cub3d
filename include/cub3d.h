@@ -6,7 +6,7 @@
 /*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 00:34:22 by aarbaoui          #+#    #+#             */
-/*   Updated: 2023/06/18 12:59:15 by ybenlafk         ###   ########.fr       */
+/*   Updated: 2023/06/19 11:08:00 by ybenlafk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@
 # define TILE_SIZE 64
 # define PLAYER_SIZE 5
 # define SENSE 0.3
-# define RENDER_DISTANCE 1000
+# define PISTOL_IMG "assets/textures/weapon/pistol.png"
+# define CROSSHAIR_IMG "assets/textures/weapon/crosshair.png"
 
 typedef struct s_line
 {
@@ -60,9 +61,7 @@ typedef struct s_var
 	int		e2;
 
 	int		is_ray_facing_down;
-	int		is_ray_facing_up;
 	int		is_ray_facing_right;
-	int		is_ray_facing_left;
 
 	float	speed;
 	float	new_px;
@@ -86,9 +85,8 @@ typedef struct s_player
 typedef struct s_engine
 {
 	int				is_ray_facing_down;
-	int				is_ray_facing_up;
 	int				is_ray_facing_right;
-	int				is_ray_facing_left;
+
 	float			distance;
 	int				h;
 	int				v;

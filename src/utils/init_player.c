@@ -6,7 +6,7 @@
 /*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 12:37:03 by ybenlafk          #+#    #+#             */
-/*   Updated: 2023/06/18 10:53:42 by ybenlafk         ###   ########.fr       */
+/*   Updated: 2023/06/19 10:59:03 by ybenlafk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ void	init_start_angle(t_var p, t_data *data)
 {
 	data->pl.px = p.j * 64 + 16;
 	data->pl.py = p.i * 64 + 16;
-	if (data->world.map[p.i][p.j] == 'W')
+	if (data->world.map[p.i][p.j] == 'S')
 		data->pl.pa = 3 * M_PI / 2;
-	else if (data->world.map[p.i][p.j] == 'E')
-		data->pl.pa = M_PI / 2;
 	else if (data->world.map[p.i][p.j] == 'N')
+		data->pl.pa = M_PI / 2;
+	else if (data->world.map[p.i][p.j] == 'W')
 		data->pl.pa = M_PI;
-	else if (data->world.map[p.i][p.j] == 'S')
+	else if (data->world.map[p.i][p.j] == 'E')
 		data->pl.pa = 0;
 	data->pl.pdx = cos(data->pl.pa) * 5;
 	data->pl.pdy = sin(data->pl.pa) * 5;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_util.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aarbaoui <aarbaoui@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 12:02:20 by ybenlafk          #+#    #+#             */
-/*   Updated: 2023/06/17 17:34:12 by aarbaoui         ###   ########.fr       */
+/*   Updated: 2023/06/19 10:49:44 by ybenlafk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ int	is_empty(char c)
 
 int	is_valid(t_var *p, char **map)
 {
-	if (!map[p->i + 1] || p->j == 0 || map[p->i + 1][0] == '\n')
+	if (p->j == 0 || !map[p->i + 1] || map[p->i + 1][0] == '\n')
 		return (1);
-	else if (!map[p->i - 1] || p->i == 0 || map[p->i - 1][0] == '\n')
+	else if (p->i == 0 || !map[p->i - 1] || map[p->i - 1][0] == '\n')
 		return (1);
 	else if (is_empty(map[p->i][p->j + 1]))
 		return (1);

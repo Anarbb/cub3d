@@ -6,7 +6,7 @@
 /*   By: ybenlafk <ybenlafk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 12:32:20 by ybenlafk          #+#    #+#             */
-/*   Updated: 2023/06/18 12:32:20 by ybenlafk         ###   ########.fr       */
+/*   Updated: 2023/06/19 11:08:29 by ybenlafk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	fill_png(unsigned int *list, mlx_texture_t *png)
 	{
 		list[j] = get_rgba(png->pixels[i], png->pixels[i + 1], png->pixels[i
 				+ 2], 255);
-		i += 4;
+		if (i < (png->height * png->width * 4) - 4)
+			i += 4;
 		j++;
 	}
 }
@@ -51,8 +52,8 @@ void	fill_textures(t_data *data)
 	data->so = mlx_load_png(data->world.so);
 	data->we = mlx_load_png(data->world.we);
 	data->ea = mlx_load_png(data->world.ea);
-	data->crosshair_tex = mlx_load_png("assets/textures/crosshair.png");
-	data->weapon_tex = mlx_load_png("assets/textures/pistol1.png");
+	data->crosshair_tex = mlx_load_png(CROSSHAIR_IMG);
+	data->weapon_tex = mlx_load_png(PISTOL_IMG);
 	if (!data->no || !data->so || !data->we || !data->ea || check_texture(data)
 		|| !data->crosshair_tex || !data->weapon_tex)
 		exit(1);
